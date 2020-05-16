@@ -1,0 +1,6 @@
+eqtk.eqcheck
+============
+
+.. currentmodule:: eqtk
+
+.. autofunction:: eqcheck

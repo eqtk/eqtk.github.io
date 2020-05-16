@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core concepts &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conventions" href="conventions.html" />
+    <link rel="prev" title="Quick start" href="../getting_started/quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problem-definition">Problem definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-stoichiometric-matrix">The stoichiometric matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#equilibrium-constants">Equilibrium constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conservation-laws">Conservation laws</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problem-specification">Problem specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elemental-conservation-matrices">Elemental conservation matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#non-elemental-conservation-matrices">Non-elemental conservation matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-free-energies-of-chemical-species">The free energies of chemical species</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specification-in-terms-of-conservation-matrices-and-free-energies">Specification in terms of conservation matrices and free energies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../_sources/user_guide/core_concepts.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="core-concepts">
+<span id="id1"></span><h1>Core concepts<a class="headerlink" href="#core-concepts" title="Permalink to this headline">¶</a></h1>
+<p>Here, we go over the core concepts behind the problem that EQTK solves and the approach. It is advisable to read this section before proceeding through the user guide and looking at test cases because this section introduces key terminology and gives the basis for the naming convention for the arguments of EQTK’s functions. Importantly, you should understand the meanings of the terms</p>
+<ul class="simple">
+<li><p>Stoichiometric matrix,</p></li>
+<li><p>Equilibrium constants,</p></li>
+<li><p>Number density of solvent,</p></li>
+<li><p>Initial concentrations,</p></li>
+<li><p>(Elemental) conservation matrix,</p></li>
+<li><p>Free energy of a chemical species.</p></li>
+</ul>
+<div class="section" id="problem-definition">
+<h2>Problem definition<a class="headerlink" href="#problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>EQTK calculates the steady state of a closed dilute solution containing reacting chemical species in cases where all chemical reactions are reversible (finite equilibrium constants). By “closed,” we mean that no material may flow in to our out of the solution. Energy may in general enter or exit. In the case where the system is also closed to energy, the steady state is an equilibrium. We will use the terms equilibrium and steady state interchangeably going forward.</p>
+<p>Importantly, <strong>all chemical reactions must be reversible.</strong> EQTK does <em>not</em> solve steady states for chemical reaction systems in which one or more reaction is irreversible. Furthermore, as we will discuss below, the chemical kinetics of all reactions must be governed by the <a class="reference external" href="http://en.wikipedia.org/wiki/Law_of_mass_action">law of mass action</a>, which implies that all assumptions underlying the law of mass action apply to systems that EQTK handles.</p>
+</div>
+<div class="section" id="the-stoichiometric-matrix">
+<h2>The stoichiometric matrix<a class="headerlink" href="#the-stoichiometric-matrix" title="Permalink to this headline">¶</a></h2>
+<p>To specify the problem, we define a set of <span class="math notranslate nohighlight">\(n\)</span> chemical species and a set of <span class="math notranslate nohighlight">\(r\)</span> reversible chemical reactions. Let <span class="math notranslate nohighlight">\(S_j\)</span> be the symbol
+for chemical species <span class="math notranslate nohighlight">\(j\)</span>.  Then, chemical reaction <span class="math notranslate nohighlight">\(i\)</span> is represented as</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j} \nu_{ij}\,S_j = 0,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu_{ij}\)</span> is the stoichiometric coefficient of species <span class="math notranslate nohighlight">\(j\)</span> in
+reaction <span class="math notranslate nohighlight">\(r\)</span>.  We can assemble the <span class="math notranslate nohighlight">\(\nu_{ij}\)</span> into an <span class="math notranslate nohighlight">\(r \times
+n\)</span> <strong>stoichiometric matrix</strong> <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>.  Each row of <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> represents a single chemical reaction.</p>
+<p>As an illustrative example, consider a chemical reaction system where species A, B, and C may bind each other to form dimers AB, BB, and BC, and A and C may be interconverted via the chemical reactions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\mathrm{A} \rightleftharpoons \mathrm{C}\\
+&amp;\mathrm{AB} \rightleftharpoons \mathrm{A} + \mathrm{B}\\
+&amp;\mathrm{BB} \rightleftharpoons 2\mathrm{B}\\
+&amp;\mathrm{BC} \rightleftharpoons \mathrm{B} + \mathrm{C}.\end{split}\]</div>
+<p>We can represent these reactions with the stoichiometric coefficients as defined above.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rrrrrrcr}
+&amp;-\mathrm{A} &amp;  &amp; + \mathrm{C} &amp; &amp; &amp;  &amp; = &amp; 0 \\
+&amp;\phantom{-}\mathrm{A} &amp; + \mathrm{B} &amp;  &amp; - \mathrm{AB} &amp;  &amp;  &amp; = &amp; 0 \\
+&amp; &amp; \phantom{+}2\mathrm{B} &amp; &amp; &amp; - \mathrm{BB} &amp;  &amp; = &amp; 0 \\
+&amp; &amp; \phantom{+}\mathrm{B} &amp; + \mathrm{C} &amp;  &amp;  &amp; - \mathrm{BC} &amp; = &amp;0.
+\end{array}\end{split}\]</div>
+<p>Then, the stoichiometric matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} =
+\begin{pmatrix}
+-1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 \\
+0 &amp; 2 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix}.\end{split}\]</div>
+<p>Note that we have defined each row of <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> to describe both
+the forward and reverse reaction. This is not to be confused with a like-named matrix
+<span class="math notranslate nohighlight">\(\mathsf{S}\)</span> from the systems biology literature (see, e.g., <a class="reference external" href="https://doi.org/10.1017/CBO9781139854610.012">Palsson’s systems biology book</a>) that can be constructed from <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{S} = \left(\mathsf{N}^\mathsf{T} \; | \; -\mathsf{N}^\mathsf{T}\right).\]</div>
+<p>For a properly posed problem, we stipulate that <span class="math notranslate nohighlight">\(N\)</span> must have full row rank. Put simply, this means that each species must be accounted for in at least one chemical reaction and that the set of chemical reactions is minimal, meaning that no given reaction can be written as a combination of any other two or more. In the example, we would not consider the chemical reaction</p>
+<div class="math notranslate nohighlight">
+\[2 \mathrm{A} + \mathrm{B} \rightleftharpoons \mathrm{AB} + \mathrm{C}\]</div>
+<p>because it is a linear combination of the first two reactions. Along with the requirement that the <span class="math notranslate nohighlight">\(N\)</span> have full row rank is the requirement that <span class="math notranslate nohighlight">\(n \ge r\)</span>.</p>
+</div>
+<div class="section" id="equilibrium-constants">
+<h2>Equilibrium constants<a class="headerlink" href="#equilibrium-constants" title="Permalink to this headline">¶</a></h2>
+<p>For a set of chemical reactions, we define the net rates of the chemical reactions by the <span class="math notranslate nohighlight">\(r\)</span>-vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.  The dynamics of the concentrations of the chemical species, denoted by the <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(\mathbf{c}\)</span>, evolve according to</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm{d}\mathbf{c}}{\mathrm{d}t} = \mathsf{N}^\mathsf{T} \cdot \mathbf{v},\]</div>
+<p>For dilute solutions, the law of mass action gives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_i = k_i^+ \prod_{\substack{j \\ \nu_{ij} &lt; 0}} c_j^{|\nu_{ij}|}
+- k_i^-  \prod_{\substack{j \\ \nu_{ij} &gt; 0}} c_j^{|\nu_{ij}|},\end{split}\]</div>
+<p>The first term is the rate of the forward reaction, and the second is the rate of the reverse reaction.  The parameters <span class="math notranslate nohighlight">\(k_i^+\)</span> and <span class="math notranslate nohighlight">\(k_i^-\)</span> are the forward and reverse rate constants, respectively, and are a function only of temperature and pressure.  At steady state, <span class="math notranslate nohighlight">\(\dot{\mathbf{c}} = \mathbf{0}\)</span>, so <span class="math notranslate nohighlight">\(\mathbf{v} = \mathbf{0}\)</span>.  Thus, at steady state <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> must satisfy</p>
+<div class="math notranslate nohighlight">
+\[\prod_{j} c_j^{\nu_{ij}} = \frac{k_i^+}{k_i^-} \equiv K_i \;\forall i\]</div>
+<p><span class="math notranslate nohighlight">\(K_i\)</span> is commonly called the <strong>equilibrium constant</strong>, though strictly
+speaking may describe a steady state that is not necessarily at
+equilibrium, as would be the case for a system that consumes or
+produces energy through its reactions.</p>
+<p>From the above equation, it is clear that the equilibrium constant is in general not dimensionless, but has units of concentration raise to some power. If instead we use dimensionless concentrations, or mole fractions <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, defined by</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x} = \mathbf{c} / \rho_\mathrm{solv},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_\mathrm{solv}\)</span> is the <strong>number density of the solvent</strong>. For example, at atmospheric pressure and room temperature, <span class="math notranslate nohighlight">\(\rho_\mathrm{H_2O} \approx 55\)</span> moles per liter.</p>
+<p>We can write the equilibrium expression in a more compact form.</p>
+<div class="math notranslate nohighlight">
+\[\ln \mathbf{K} = \mathsf{N} \cdot \ln \mathbf{c}.\]</div>
+<p>(It appears as though we are taking logarithms of dimensional quantities here, but the units do appropriately cancel upon rearrangement of the equation.)</p>
+</div>
+<div class="section" id="conservation-laws">
+<h2>Conservation laws<a class="headerlink" href="#conservation-laws" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> is square (<span class="math notranslate nohighlight">\(n = r\)</span>), then the equilibrium concentrations are immediately attained by solving the linear system</p>
+<div class="math notranslate nohighlight">
+\[\ln \mathbf{K} = \mathsf{N} \cdot \ln \mathbf{c}.\]</div>
+<p>This is almost never the case; in most applications there are more chemical species than there are reactions, and <span class="math notranslate nohighlight">\(n &gt; r\)</span>. The equilibrium expression is then underdetermined, and we need <span class="math notranslate nohighlight">\(n - r\)</span> additional equations to solve for the concentrations.</p>
+<p>Let us assume that we initially have concentrations <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> of chemical species in our dilute solution. We refer to the <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> as the <strong>initial concentrations</strong>. There exists a <strong>conservation matrix</strong> <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{A} \cdot \mathbf{c} = \mathsf{A} \cdot \mathbf{c}^0.\]</div>
+<p>The rows of the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> span the null space of the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{A}\cdot\mathsf{N}^\mathsf{T} = \mathsf{0}.\]</div>
+<p>We can see where the conservation matrix gets its name by left-multiplying the kinetics differential equation by <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{A}\cdot\frac{\mathrm{d}\mathbf{c}}{\mathrm{d}t} = \frac{\mathrm{d}}{\mathrm{d}t}\,\mathsf{A}\cdot\mathbf{c} =  \mathsf{A}\cdot \mathsf{N}^\mathsf{T} \cdot \mathbf{v} = \mathbf{0}.\]</div>
+<p>Therefore, the quantity <span class="math notranslate nohighlight">\(\mathsf{A}\cdot \mathbf{c}\)</span> is conserved. Thus, we have a complete system of equations to specify equilibrium,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\ln \mathbf{K} = \mathsf{N} \cdot \ln \mathbf{c}, \\
+&amp;\mathsf{A} \cdot \mathbf{c} = \mathsf{A} \cdot \mathbf{c}^0.\end{split}\]</div>
+<p>The set equilibrium concentrations satisfying the above system of equations is unique (proven in the paper accompanying this software).</p>
+</div>
+<div class="section" id="problem-specification">
+<h2>Problem specification<a class="headerlink" href="#problem-specification" title="Permalink to this headline">¶</a></h2>
+<p>The necessary ingredients to fully specify an equilibrium calculation are now clear.</p>
+<ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\(r \times n\)</span> stoichiometric matrix, <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> (full row rank).</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(r\)</span> equilibrium constants, <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> (positive and finite).</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(n\)</span> initial concentrations, <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> (nonnegative and finite).</p></li>
+</ul>
+<p>It is not necessary to specify the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>, as it can be calculated from the null space of the stoichiometric matric <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>.</p>
+</div>
+<div class="section" id="elemental-conservation-matrices">
+<h2>Elemental conservation matrices<a class="headerlink" href="#elemental-conservation-matrices" title="Permalink to this headline">¶</a></h2>
+<p>Keeping in mind our example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} =
+\begin{pmatrix}
+  \mathrm{A} &amp; \mathrm{B} &amp; \mathrm{C} &amp; \mathrm{AB} &amp; \mathrm{BB} &amp; \mathrm{BC} \\ \hline
+  -1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  1 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 \\
+  0 &amp; 2 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\
+  0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix},\end{split}\]</div>
+<p>where we have annotated the columns of <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> to indicate the
+respective chemical species.  We can compute the null space of
+<span class="math notranslate nohighlight">\(\mathsf{N}\)</span> to be</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{A} =
+\begin{pmatrix}
+  \mathrm{A} &amp; \mathrm{B} &amp; \mathrm{C} &amp; \mathrm{AB} &amp; \mathrm{BB} &amp; \mathrm{BC} \\ \hline
+  1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 1
+\end{pmatrix}.\end{split}\]</div>
+<p>The conservation law <span class="math notranslate nohighlight">\(\mathsf{A} \cdot \mathbf{c} = \mathsf{A}
+\cdot \mathbf{c}^0\)</span> is interpreted as a statement of conservation of mass for
+irreducible species of type A and B.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;c_A + c_C + 2c_{AB} + c_{BC} = c_A^0 + c_C^0 + 2c_{AB}^0 + c_{BC}^0, \\
+&amp;c_B + 2c_{BB} + c_{BC} = c_B^0 + 2c_{BB}^0 + c_{BC}^0.\end{split}\]</div>
+<p>We will use the term <strong>element</strong> to define an irreducible chemical species (not necessarily the elements that appear in the periodic table; just any chemical species that cannot be broken down). In our example system, A and B are elements, while AB, BB, and BC are not. We do not consider C to be an element, because it is a transformation of another element, A.</p>
+<p>In the case above, the conservation matrix <span class="math notranslate nohighlight">\(A\)</span> is an <strong>elemental conservation matrix</strong>. The entry in
+column <span class="math notranslate nohighlight">\(j\)</span> of row <span class="math notranslate nohighlight">\(i\)</span> of an <strong>elemental matrix</strong> is the number of
+elements of type <span class="math notranslate nohighlight">\(i\)</span> that are in compound <span class="math notranslate nohighlight">\(j\)</span>. In other words, each column represents the elemental composition of a compound. Having balanced chemical reactions (in which the number elements of every given type has equal representation on each side of the chemical reactions) is a prerequisite for a conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> being an
+elemental matrix, but is not sufficient, as shown in the next example.
+Note also that an elemental matrix need not have linearly independent
+rows in general, also shown in the next example, <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> must.</p>
+<p>Note that the elemental conservation matrix is one choice among many conservation matrices. The matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+  1 &amp; -3.5 &amp; 1 &amp; -2.5 &amp; -7 &amp; -2.5 \\
+  -2 &amp; 1 &amp; -2 &amp; -1 &amp; 2 &amp; -1
+\end{pmatrix}\end{split}\]</div>
+<p>is also a conservation matrix, but it not elemental.</p>
+</div>
+<div class="section" id="non-elemental-conservation-matrices">
+<h2>Non-elemental conservation matrices<a class="headerlink" href="#non-elemental-conservation-matrices" title="Permalink to this headline">¶</a></h2>
+<p>For a given set of chemical reactions, conservation matrices need not be elemental. This happens when, unlike in our previous example, there is no reaction to break compounds down into their elements. As an illustrative example, consider the chemical reaction</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{AB} + \mathrm{CD} \rightleftharpoons \mathrm{AC} + \mathrm{BD}.\]</div>
+<p>Here,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} =   \begin{pmatrix}
+  \mathrm{AB} &amp; \mathrm{CD} &amp; \mathrm{AC} &amp; \mathrm{BD} \\ \hline
+  -1 &amp; -1 &amp; 1 &amp; 1
+  \end{pmatrix}\end{split}\]</div>
+<p>A conservation matrix whose rows span the null space is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{A} =   \begin{pmatrix}
+  \mathrm{AB} &amp; \mathrm{CD} &amp; \mathrm{AC} &amp; \mathrm{BD} \\ \hline
+  1 &amp; 0 &amp; 1 &amp; 0 \\
+  1 &amp; 0 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 1 &amp; 0 \\
+  \end{pmatrix}.\end{split}\]</div>
+<p>This matrix is not elemental because the second and fourth columns do not represent the elemental composition of a compound. The first row of the matrix represents conservation of particles of type A, the second of type B, and the third of type C. If we were to have a conservation law for particles of type D, that row would be <span class="math notranslate nohighlight">\((0, 1, 0, 1)\)</span>, and we would have an elemental matrix. But this row is a linear combination of the other three rows, namely row 2 minus row 1 plus row 3. Thus, the elemental matrix for this example system is comprised of linear combinations of the null space, but is
+redundant with respect to conservation laws.</p>
+</div>
+<div class="section" id="the-free-energies-of-chemical-species">
+<h2>The free energies of chemical species<a class="headerlink" href="#the-free-energies-of-chemical-species" title="Permalink to this headline">¶</a></h2>
+<p>We can define an <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[K_i = \exp\left\{ -\sum_{j} \nu_{ij}\,G_j\right\} \;\forall i,\]</div>
+<p>or equivalently</p>
+<div class="math notranslate nohighlight">
+\[-\ln \mathbf{K} = \mathsf{N} \cdot \mathbf{G}.\]</div>
+<p>In the case of a system at equilibrium, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> has the meaning
+of the set of <strong>free energies</strong> (in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span>) associated with each chemical species, as given by <a class="reference external" href="https://en.wikipedia.org/wiki/Detailed_balance">detailed balance</a>.  Since
+by construction, we almost always have <span class="math notranslate nohighlight">\(n &gt; r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> is underdetermined. To determine <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, we must set a reference free energy.  To do so, we augment <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> with <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> to create an
+<span class="math notranslate nohighlight">\(n \times r\)</span> matrix <span class="math notranslate nohighlight">\(\mathsf{N}'\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N}' = \begin{pmatrix} \mathsf{A} \\ \mathsf{N}
+\end{pmatrix}.\end{split}\]</div>
+<p>We similarly define an <span class="math notranslate nohighlight">\(n\)</span>-vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{b} = \begin{pmatrix}
+  0 \\
+  -\log \mathbf{K}
+  \end{pmatrix}.\end{split}\]</div>
+<p>Thus, the free energies of all species may be obtained by solving</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{N}' \cdot \mathbf{G} = \mathbf{b}.\]</div>
+<p>(This equation is solvable because <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> has full row rank and
+the augmented rows comprise its null space, being orthogonal to all
+rows in the rest of <span class="math notranslate nohighlight">\(\mathsf{N}'\)</span>.)  Setting the first
+<span class="math notranslate nohighlight">\(n-r\)</span> entries of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> to zero simply sets the
+reference free energy.</p>
+</div>
+<div class="section" id="specification-in-terms-of-conservation-matrices-and-free-energies">
+<h2>Specification in terms of conservation matrices and free energies<a class="headerlink" href="#specification-in-terms-of-conservation-matrices-and-free-energies" title="Permalink to this headline">¶</a></h2>
+<p>We have demonstrated how a conservation matrix and set of free energies may be computed from a stoichiometric matrix and a set of equilibrium constants. We may also go the other way; given <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, we can compute <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>. We first compute <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> from the null space of <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>, and then compute the equilibrium constants using</p>
+<div class="math notranslate nohighlight">
+\[K_i = \exp\left\{ -\sum_{j} \nu_{ij}\,G_j\right\} \;\forall i,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu_{ij}\)</span> is entry <span class="math notranslate nohighlight">\(i, j\)</span> in <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>. So, we may alternatively specify the equilbrium problem giving:</p>
+<ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\((n-r) \times n\)</span> conservation matrix, <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> (nonnegative and full row rank).</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(n\)</span> free energies, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> (finite).</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(n\)</span> initial concentrations, <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> (nonnegative and finite).</p></li>
+</ul>
+<p>We have stipulated that the constraint matrix is nonnegative. While not strictly a requirement to formulate the problem, the nonnegativity of user-supplied <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> is necessary to allow treatment of cases where some of the initial concentrations are zero; <span class="math notranslate nohighlight">\(c_j^0 = 0\)</span>. (For details on this requirement, see algorithmic details.) In practice, users will almost always supply elemental conservation matrices.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="conventions.html" class="btn btn-neutral float-right" title="Conventions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../getting_started/quickstart.html" class="btn btn-neutral float-left" title="Quick start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x6291a7e50> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

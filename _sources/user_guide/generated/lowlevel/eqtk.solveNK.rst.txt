@@ -1,0 +1,6 @@
+eqtk.solveNK
+============
+
+.. currentmodule:: eqtk
+
+.. autofunction:: solveNK

@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EQTK low level interfaces &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="The Boltzmann constant" href="parsers_and_utilities/eqtk_constants.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EQTK low level interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-problem">Example problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solve-with-n-and-k-specified">Solve with N and K specified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solve-with-n-and-g-specified">Solve with N and G specified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solve-with-a-and-g-specified">Solve with A and G specified</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../_sources/user_guide/low_level_interface.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="eqtk-low-level-interfaces">
+<span id="low-level-interface"></span><h1>EQTK low level interfaces<a class="headerlink" href="#eqtk-low-level-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>EQTK offers low-level interfaces for solving coupled equilibria. Almost all users should use the high-level interfaces, which almost always means using <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The high-level functions allow different formats for input and output and handles all necessary parsing before executing the lower-level functions. The low-level functions are just-in-time compiled (JITted), and therefore are strict in the data types they expect as input and offer as output. The low-level function are useful for users who wish to incorporate equilibrium solving in a larger, possibly also JITted , pipeline.</p>
+<p>Importantly, all low-level functions require inputs that are contiguous Numpy arrays in C order with a float data type (see the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/internals.html">Numpy docs</a>). The first argument for each function is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, the <em>dimensionless</em> initial concentration of all species. It is a 2D array, where each row corresponds to a set of initial concentrations for which a calculation is to be done. For a single set of initial concentrations, it still must be a 2D array, in that case with only one row.</p>
+<p>The details about the remaining two arguments for the low-level functions are given in their individual descriptions, below. It is important to note that all concentrations, equilibrium constants, and free energies must be dimensionless. The return value of all low-level functions is the <em>natural logarithm</em> of the dimensionless equilibrium concentrations, returned as two-dimensional Numpy arrays the same shape as <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p>
+<div class="section" id="example-problem">
+<h2>Example problem<a class="headerlink" href="#example-problem" title="Permalink to this headline">¶</a></h2>
+<p>To demonstrate the use of the low-level interface, we will use the same example problem we used in the documentation of the <a class="reference internal" href="high_level/eqtk_solve.html#eqtk-solve"><span class="std std-ref">high-level interface</span></a>. The chemical reactions and equilibrium constants are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{lcl}
+\mathrm{A} \rightleftharpoons \mathrm{C} &amp; &amp; K = 0.5\\
+\mathrm{AB} \rightleftharpoons \mathrm{A} + \mathrm{B} &amp; &amp; K = 0.02 \text{ mM}\\
+\mathrm{BB} \rightleftharpoons 2\mathrm{B}&amp; &amp; K = 0.1 \text{ mM}\\
+\mathrm{BC} \rightleftharpoons \mathrm{B} + \mathrm{C}&amp; &amp; K = 0.01 \text{ mM}.
+\end{array}\end{split}\]</div>
+<p>The stoichiometric matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} =
+\begin{pmatrix}
+  -1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  1 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 \\
+  0 &amp; 2 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\
+  0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix},\end{split}\]</div>
+<p>with equilibrium constants</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{K} = \left(\begin{array}{l}
+0.5\\
+0.02\text{ mM}\\
+0.1\text{ mM}\\
+0.01\text{ mM}
+\end{array}
+\right).\end{split}\]</div>
+<p>An elemental conservation matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{A} =
+\begin{pmatrix}
+  1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 1
+\end{pmatrix}.\end{split}\]</div>
+<p>To have them available, we will create them a Numpy arrays. The arrays are <em>not</em> the format the low-level interface functions require, but we can use <cite>eqtk.parse_input()</cite> to convert them to the appropriate format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">])</span>
+
+<span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">logK</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">parse_input</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The results are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mf">1.80476367e-05</span><span class="p">,</span> <span class="mf">1.80476367e-05</span><span class="p">,</span> <span class="mf">0.00000000e+00</span><span class="p">,</span> <span class="mf">0.00000000e+00</span><span class="p">,</span>
+        <span class="mf">0.00000000e+00</span><span class="p">,</span> <span class="mf">0.00000000e+00</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">N</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">logK</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="o">-</span><span class="mf">0.69314718</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.53193373</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.22508091</span><span class="p">,</span> <span class="o">-</span><span class="mf">15.527666</span>  <span class="p">])</span>
+</pre></div>
+</div>
+<p>Alternatively, we could create them by hand, ensuring the correct format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">solvent_density</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">water_density</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">293.15</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">solvent_density</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x0</span><span class="p">)))</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">])</span>
+<span class="n">K</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">/=</span> <span class="n">solvent_density</span>
+<span class="n">logK</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we will need values of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> for some of the calculations. To keep the results consistent, we will calculate them now.</p>
+</div>
+<div class="section" id="solve-with-n-and-k-specified">
+<h2>Solve with N and K specified<a class="headerlink" href="#solve-with-n-and-k-specified" title="Permalink to this headline">¶</a></h2>
+<p>For a problem where the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the equilibrium constants <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> are specified, use eqtk.solveNK()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array of the <em>natural logarithm</em> of the equilibrium constants with a float data type.</p>
+<p>The result is the natural logarithm of the dimensionless concentrations,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">12.76103925</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.36384703</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.45418643</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.59295256</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>It is important to note that restrictions on <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">logK</span></code> hold. All entries must be finite, and <code class="docutils literal notranslate"><span class="pre">N</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
+</div>
+<div class="section" id="solve-with-n-and-g-specified">
+<h2>Solve with N and G specified<a class="headerlink" href="#solve-with-n-and-g-specified" title="Permalink to this headline">¶</a></h2>
+<p>For a problem where the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the free energies of the chemical species, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, are specified, use eqtk.solveNG()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array free energies with a float data type.</p>
+<p>The result is the natural logarithm of the dimensionless concentrations,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">12.76103925</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.36384703</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.45418643</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.59295256</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Again, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> are subject to restrictions. All entries must be finite, and <code class="docutils literal notranslate"><span class="pre">N</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
+</div>
+<div class="section" id="solve-with-a-and-g-specified">
+<h2>Solve with A and G specified<a class="headerlink" href="#solve-with-a-and-g-specified" title="Permalink to this headline">¶</a></h2>
+<p>For a problem where the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and the free energies of the chemical species, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, are specified, use eqtk.solveAG()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the conservation matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array free energies with a float data type.</p>
+<p>The result is the natural logarithm of the dimensionless concentrations,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">12.76103925</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.36384703</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.45418643</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.59295256</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> are subject to restrictions. All entries must be nonnegative and finite, and <code class="docutils literal notranslate"><span class="pre">A</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="parsers_and_utilities/eqtk_constants.html" class="btn btn-neutral float-left" title="The Boltzmann constant" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x62a55a250> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

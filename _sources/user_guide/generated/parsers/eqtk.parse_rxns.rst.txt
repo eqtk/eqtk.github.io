@@ -1,0 +1,6 @@
+eqtk.parse\_rxns
+================
+
+.. currentmodule:: eqtk
+
+.. autofunction:: parse_rxns

@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Convert output to Pandas DataFrame &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compute the density of water" href="eqtk_water_density.html" />
+    <link rel="prev" title="Parse input to high-level interface" href="eqtk_parse_input.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Parsers and utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eqtk_parse_rxns.html">Parse reactions as strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_parse_input.html">Prepare input for use in low-level functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Convert Numpy output to Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_water_density.html">Compute the density of water</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_checks.html">Check satisfaction of equilibrium conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_constants.html">Physical constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../../_sources/user_guide/parsers_and_utilities/eqtk_to_df.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="convert-output-to-pandas-dataframe">
+<span id="eqtk-to-df"></span><h1>Convert output to Pandas DataFrame<a class="headerlink" href="#convert-output-to-pandas-dataframe" title="Permalink to this headline">¶</a></h1>
+<p>Low level interface functions return equilibrium concentrations as Numpy arrays. The high level interface functions (<code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, <code class="docutils literal notranslate"><span class="pre">eqtk.fixed_value_solve()</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk.volumetric_titration()</span></code>) can also return Numpy arrays if the input is also Numpy arrays and the <code class="docutils literal notranslate"><span class="pre">names</span></code> keyword argument is unspecified. After performing a calculation that returns Numpy arrays, the user may with to convert the output to a Pandas Series of DataFrame for convenience in plotting or for further processing. The <code class="docutils literal notranslate"><span class="pre">eqtk.to_df()</span></code> function provides this functionality.</p>
+<p>Before demonstrating how to use the function, it is important to note that the preferred way to generate rich output is to generate it directly from the high level interfaces by supplying arguments that enable return of DataFrames. The <code class="docutils literal notranslate"><span class="pre">eqtk.to_df()</span></code> function is only meant as a post processing step if the user either neglected to provide descriptive input to the high level interface function or chose to use the low level interface for speed purposes.</p>
+<p>As a demonstration, we will use the example chemical reaction system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{lcl}
+\mathrm{A} \rightleftharpoons \mathrm{C} &amp; &amp; K = 0.5\\
+\mathrm{AB} \rightleftharpoons \mathrm{A} + \mathrm{B} &amp; &amp; K = 0.02 \text{ mM}\\
+\mathrm{BB} \rightleftharpoons 2\mathrm{B}&amp; &amp; K = 0.1 \text{ mM}\\
+\mathrm{BC} \rightleftharpoons \mathrm{B} + \mathrm{C}&amp; &amp; K = 0.01 \text{ mM}.
+\end{array}\end{split}\]</div>
+<p>The annotated stoichiometric matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} =
+\begin{pmatrix}
+  \mathrm{A} &amp; \mathrm{B} &amp; \mathrm{C} &amp; \mathrm{AB} &amp; \mathrm{BB} &amp; \mathrm{BC} \\ \hline
+  -1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  1 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 \\
+  0 &amp; 2 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\
+  0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix},\end{split}\]</div>
+<p>with equilibrium constants</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{K} = \left(\begin{array}{l}
+0.5\\
+0.02\text{ mM}\\
+0.1\text{ mM}\\
+0.01\text{ mM}
+\end{array}
+\right).\end{split}\]</div>
+<p>We will first solve the coupled equilibrium problem using <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> with all input as Numpy arrays and without the <code class="docutils literal notranslate"><span class="pre">names</span></code> keyword argument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">])</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, we have calculated the equilibrium concentrations for a single set of initial conditions, so calling <code class="docutils literal notranslate"><span class="pre">eqtk.to_df()</span></code> will return a Pandas Series.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">]</span>
+<span class="n">c_series</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">to_df</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A__0</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>     <span class="mf">1.000000</span>
+<span class="n">B__0</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>     <span class="mf">1.000000</span>
+<span class="n">C__0</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>     <span class="mf">0.000000</span>
+<span class="n">AB__0</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>    <span class="mf">0.000000</span>
+<span class="n">BB__0</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>    <span class="mf">0.000000</span>
+<span class="n">BC__0</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>    <span class="mf">0.000000</span>
+<span class="n">A</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>        <span class="mf">0.188228</span>
+<span class="n">B</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>        <span class="mf">0.077504</span>
+<span class="n">C</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>        <span class="mf">0.009411</span>
+<span class="n">AB</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>       <span class="mf">0.729418</span>
+<span class="n">BB</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>       <span class="mf">0.060068</span>
+<span class="n">BC</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>       <span class="mf">0.072942</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>If, however, we consider a set of concentrations, we get a DataFrame when converting using <code class="docutils literal notranslate"><span class="pre">eqtk.to_df()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+
+<span class="n">c_df</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">to_df</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is has columns <code class="docutils literal notranslate"><span class="pre">['A__0</span> <span class="pre">(mM)',</span> <span class="pre">'B__0</span> <span class="pre">(mM)',</span> <span class="pre">'C__0</span> <span class="pre">(mM)',</span> <span class="pre">'AB__0</span> <span class="pre">(mM)',</span> <span class="pre">'BB__0</span> <span class="pre">(mM)',</span> <span class="pre">'BC__0</span> <span class="pre">(mM)',</span> <span class="pre">'A</span> <span class="pre">(mM)',</span> <span class="pre">'B</span> <span class="pre">(mM)',</span> <span class="pre">'C</span> <span class="pre">(mM)',</span> <span class="pre">'AB</span> <span class="pre">(mM)',</span> <span class="pre">'BB</span> <span class="pre">(mM)',</span> <span class="pre">'BC</span> <span class="pre">(mM)']</span></code> and has three rows, one for each set of concentrations. Executing <code class="docutils literal notranslate"><span class="pre">print(c_df[c_df.columns[~c_df.columns.str.contains('__0')]])</span></code> gives</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">A</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>    <span class="n">B</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>    <span class="n">C</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>   <span class="n">AB</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>   <span class="n">BB</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>   <span class="n">BC</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>
+<span class="mi">0</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>  <span class="mf">0.729418</span>  <span class="mf">0.060068</span>  <span class="mf">0.072942</span>
+<span class="mi">1</span>  <span class="mf">0.118379</span>  <span class="mf">0.057704</span>  <span class="mf">0.005919</span>  <span class="mf">0.341547</span>  <span class="mf">0.033297</span>  <span class="mf">0.034155</span>
+<span class="mi">2</span>  <span class="mf">0.039494</span>  <span class="mf">0.026946</span>  <span class="mf">0.001975</span>  <span class="mf">0.053211</span>  <span class="mf">0.007261</span>  <span class="mf">0.005321</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eqtk_water_density.html" class="btn btn-neutral float-right" title="Compute the density of water" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="eqtk_parse_input.html" class="btn btn-neutral float-left" title="Parse input to high-level interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x628c38a50> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+eqtk.solveNG
+============
+
+.. currentmodule:: eqtk
+
+.. autofunction:: solveNG

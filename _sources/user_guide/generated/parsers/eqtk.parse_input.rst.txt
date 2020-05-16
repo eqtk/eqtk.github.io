@@ -1,0 +1,6 @@
+eqtk.parse\_input
+=================
+
+.. currentmodule:: eqtk
+
+.. autofunction:: parse_input

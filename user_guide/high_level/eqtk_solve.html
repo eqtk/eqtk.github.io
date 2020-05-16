@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Generic equilibrium solver &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Equilibrium with some concentrations fixed" href="eqtk_fixed_value_solve.html" />
+    <link rel="prev" title="High-level interfaces" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">High-level interfaces</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Solve</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-problem">Example problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stoichiometric-matrix-n-given">Stoichiometric matrix N given</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n-given-as-a-numpy-array">N given as a Numpy array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n-given-as-a-pandas-dataframe">N given as a Pandas DataFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-i-o-using-stoichiometric-matrices">Summary of I/O using stoichiometric matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conservation-matrix-a-given">Conservation matrix A given</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-given-as-a-numpy-array">A given as a Numpy array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-given-as-a-pandas-dataframe">A given as a Pandas DataFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-i-o-using-conservation-matrices">Summary of I/O using conservation matrices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_fixed_value_solve.html">Solve with some concentrations fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_volumetric_titration.html">Volumetric titration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../../_sources/user_guide/high_level/eqtk_solve.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="generic-equilibrium-solver">
+<span id="eqtk-solve"></span><h1>Generic equilibrium solver<a class="headerlink" href="#generic-equilibrium-solver" title="Permalink to this headline">¶</a></h1>
+<p>EQTK’s main high level interface to solving the coupled equilibrium problem is <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. It requires as input initial concentrations <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> and either a stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> or a conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. Depending on the data types of these inputs, other inputs, such as equilibrium constants and free energies, may be required.</p>
+<p>In what follows, we will assume that Numpy, Pandas, and EQTK have been imported respectively as <code class="docutils literal notranslate"><span class="pre">np</span></code>, <code class="docutils literal notranslate"><span class="pre">pd</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk</span></code>.</p>
+<div class="section" id="example-problem">
+<h2>Example problem<a class="headerlink" href="#example-problem" title="Permalink to this headline">¶</a></h2>
+<p>As we demonstrate the usage of <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, it is useful to have an example in mind. We will use the example from the <a class="reference internal" href="../core_concepts.html#core-concepts"><span class="std std-ref">core concepts</span></a> part of the user guide (which you should read if you have not already. The chemical reactions and associated equilibrium constants for that example are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{lcl}
+\mathrm{A} \rightleftharpoons \mathrm{C} &amp; &amp; K = 0.5\\
+\mathrm{AB} \rightleftharpoons \mathrm{A} + \mathrm{B} &amp; &amp; K = 0.02 \text{ mM}\\
+\mathrm{BB} \rightleftharpoons 2\mathrm{B}&amp; &amp; K = 0.1 \text{ mM}\\
+\mathrm{BC} \rightleftharpoons \mathrm{B} + \mathrm{C}&amp; &amp; K = 0.01 \text{ mM}.
+\end{array}\end{split}\]</div>
+<p>The annotated stoichiometric matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} =
+\begin{pmatrix}
+  \mathrm{A} &amp; \mathrm{B} &amp; \mathrm{C} &amp; \mathrm{AB} &amp; \mathrm{BB} &amp; \mathrm{BC} \\ \hline
+  -1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  1 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 \\
+  0 &amp; 2 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\
+  0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix},\end{split}\]</div>
+<p>with equilibrium constants</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{K} = \left(\begin{array}{l}
+0.5\\
+0.02\text{ mM}\\
+0.1\text{ mM}\\
+0.01\text{ mM}
+\end{array}
+\right).\end{split}\]</div>
+<p>An elemental conservation matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{A} =
+\begin{pmatrix}
+  \mathrm{A} &amp; \mathrm{B} &amp; \mathrm{C} &amp; \mathrm{AB} &amp; \mathrm{BB} &amp; \mathrm{BC} \\ \hline
+  1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 1
+\end{pmatrix}.\end{split}\]</div>
+<p>The free energies, in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span> are related to the equilibrium constants. We will compute them from the equilibrium constants later when we need them.</p>
+</div>
+<div class="section" id="stoichiometric-matrix-n-given">
+<h2>Stoichiometric matrix N given<a class="headerlink" href="#stoichiometric-matrix-n-given" title="Permalink to this headline">¶</a></h2>
+<p>If an <span class="math notranslate nohighlight">\(r\times n\)</span> stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> is given, you may either specify <span class="math notranslate nohighlight">\(r\)</span> equilibrium constants or <span class="math notranslate nohighlight">\(n\)</span> free energies, in addition to <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>, which is always required.</p>
+<div class="section" id="n-given-as-a-numpy-array">
+<h3>N given as a Numpy array<a class="headerlink" href="#n-given-as-a-numpy-array" title="Permalink to this headline">¶</a></h3>
+<p>The stoichiometric matrix <cite>mathsf{N}</cite> may be given as a Numpy array. In this case, the ordering of the columns maps to the respective species. In our definition of <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>, we implicitly chose the index-species mapping shown below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>species</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>B</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>AB</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>BB</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>BC</p></td>
+</tr>
+</tbody>
+</table>
+<p>So, we can build a Numpy array for <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>We need to preserve the ordering in the specification of the initial concentrations <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>. To specify a initial concentration of <span class="math notranslate nohighlight">\([A]_0 = [B]_0 = 1\)</span> mM with all other concentrations zero, we build a Numpy array</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="section" id="equilibrium-constants-as-numpy-arrays">
+<h4>Equilibrium constants as Numpy arrays<a class="headerlink" href="#equilibrium-constants-as-numpy-arrays" title="Permalink to this headline">¶</a></h4>
+<p>We must also specify the equilibrium constants as a Numpy array if the stoichiometric matrix is also specified as a Numpy array.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The units of the inputted <code class="docutils literal notranslate"><span class="pre">c0</span></code> and <code class="docutils literal notranslate"><span class="pre">K</span></code> must be consistent, meaning that they both must use the same units for concentration. In this case, the concentration units are millimolar.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Entry <code class="docutils literal notranslate"><span class="pre">K[i]</span></code> corresponds to the chemical reaction given by the <code class="docutils literal notranslate"><span class="pre">i``th</span> <span class="pre">row</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">stoichiometric</span> <span class="pre">matrix</span> <span class="pre">``N</span></code>.</p>
+<p>We can now solve for the equilibrium concentrations</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output is a Numpy array containing the equilibrium concentrations preserving the order of the inputs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="free-energies-as-numpy-arrays">
+<h4>Free energies as Numpy arrays<a class="headerlink" href="#free-energies-as-numpy-arrays" title="Permalink to this headline">¶</a></h4>
+<p>Alternatively, we can specify free energies of each species instead of the equilibrium constants for the chemical reactions. In practice, you would enter these directly, but to keep the calculations consistent, we will calculate the free energies, using one of EQTK’s private functions to compute the density of water to make the conversion. The resulting free energies are dimensionless (in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">water_density</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">water_density</span><span class="p">(</span><span class="mf">293.15</span><span class="p">,</span> <span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+
+<span class="n">G_A</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">G_B</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">G_C</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">G_AB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">water_density</span><span class="p">)</span>
+<span class="n">G_BB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">water_density</span><span class="p">)</span>
+<span class="n">G_BC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="n">water_density</span><span class="p">)</span> <span class="o">+</span> <span class="n">G_C</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">G_A</span><span class="p">,</span> <span class="n">G_B</span><span class="p">,</span> <span class="n">G_C</span><span class="p">,</span> <span class="n">G_AB</span><span class="p">,</span> <span class="n">G_BB</span><span class="p">,</span> <span class="n">G_BC</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">N</span></code> as a Numpy array, <code class="docutils literal notranslate"><span class="pre">G</span></code> contains the free energies where <code class="docutils literal notranslate"><span class="pre">G[j]</span></code> is the free energy of the compound given by column <code class="docutils literal notranslate"><span class="pre">j</span></code> in <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p>
+<p>Now, solving for the equilibrium concentrations,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is the same.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initial-concentrations-as-a-2d-numpy-array">
+<h4>Initial concentrations as a 2D Numpy array<a class="headerlink" href="#initial-concentrations-as-a-2d-numpy-array" title="Permalink to this headline">¶</a></h4>
+<p>We may wish to compute the equilibrium concentrations for multiple initial concentrations. This is accomplished by passing in <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a two-dimensional Numpy array. Each row corresponds to a different equilibrium calculation, with the columns corresponding to the chemical species. Here is an example using three different concentrations of B.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mf">0.95238103</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.04761905</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.49849994</span><span class="p">,</span> <span class="mf">0.01738215</span><span class="p">,</span> <span class="mf">0.024925</span>  <span class="p">,</span> <span class="mf">0.43325006</span><span class="p">,</span> <span class="mf">0.00302139</span><span class="p">,</span> <span class="mf">0.04332501</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="naming-the-chemical-species">
+<h4>Naming the chemical species<a class="headerlink" href="#naming-the-chemical-species" title="Permalink to this headline">¶</a></h4>
+<p>If desired, you may specify names for the respective chemical species using the <code class="docutils literal notranslate"><span class="pre">names</span></code> keyword argument. This allows for richer output; the result is either a Pandas Series (for one-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code>) or DataFrame (for two-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code>). Here, we will again use the two-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code> from the previous calculation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is a Pandas DataFrame with descriptive column names,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;[A]__0 (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[B]__0 (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[C]__0 (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[AB]__0 (mM)&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;[BB]__0 (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[BC]__0 (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[A] (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[B] (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[C] (mM)&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;[AB] (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[BB] (mM)&#39;</span><span class="p">,</span> <span class="s1">&#39;[BC] (mM)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The columns with <code class="docutils literal notranslate"><span class="pre">__0</span></code> indicate the initial conditions used in the calculation, and the remaining columns indicate the equilibrium concentrations. We can extract just the columns that contain the equilibrium concentrations by selecting those that do not contain the string <code class="docutils literal notranslate"><span class="pre">__0</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">~</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;__0&#39;</span><span class="p">)]]</span>
+   <span class="p">[</span><span class="n">A</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">B</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">C</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">AB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BC</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>
+<span class="mi">0</span>  <span class="mf">0.952381</span>  <span class="mf">0.000000</span>  <span class="mf">0.047619</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>
+<span class="mi">1</span>  <span class="mf">0.498500</span>  <span class="mf">0.017382</span>  <span class="mf">0.024925</span>   <span class="mf">0.433250</span>   <span class="mf">0.003021</span>   <span class="mf">0.043325</span>
+<span class="mi">2</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>   <span class="mf">0.729418</span>   <span class="mf">0.060068</span>   <span class="mf">0.072942</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The units are given in parentheses next to the brackets (denoting concentration) around the species name. If the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the phase <code class="docutils literal notranslate"><span class="pre">mole</span> <span class="pre">fraction</span></code> appears in the parentheses.</p>
+</div>
+</div>
+</div>
+<div class="section" id="n-given-as-a-pandas-dataframe">
+<h3>N given as a Pandas DataFrame<a class="headerlink" href="#n-given-as-a-pandas-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>The descriptive output when the names of the chemical species are given is useful for keeping the output organized. Such organization is also useful when specifying the <em>input</em> for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The function accepts the stroichometric matrix given as a Pandas DataFrame as well. The names of the columns are then assumed to be the names of the chemical species (just the names, not including the brackets and units included in output).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">]</span>
+
+<span class="n">N_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="specification-of-equilibrium-constants">
+<h4>Specification of equilibrium constants<a class="headerlink" href="#specification-of-equilibrium-constants" title="Permalink to this headline">¶</a></h4>
+<p>In this data frame, we use Pandas’s default row indexing, but a user may wish to name each reaction for reference. Because of this, EQTK does not assume an ordering of the data frame, so the equilibrium constants <em>must</em> be included in the data frame containing the stoichiometric matrix. They are included in a column entitled <code class="docutils literal notranslate"><span class="pre">'equilibrium</span> <span class="pre">constant'</span></code>. This column must be present, so we will add it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N_df</span><span class="p">[</span><span class="s1">&#39;equilibrium constant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The inputted <code class="docutils literal notranslate"><span class="pre">N_df</span></code> is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">A</span>  <span class="n">B</span>  <span class="n">C</span>  <span class="n">AB</span>  <span class="n">BB</span>  <span class="n">BC</span>  <span class="n">equilibrium</span> <span class="n">constant</span>
+<span class="mi">0</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span>  <span class="mi">1</span>   <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>                  <span class="mf">0.05</span>
+<span class="mi">1</span>  <span class="mi">1</span>  <span class="mi">1</span>  <span class="mi">0</span>  <span class="o">-</span><span class="mi">1</span>   <span class="mi">0</span>   <span class="mi">0</span>                  <span class="mf">0.02</span>
+<span class="mi">2</span>  <span class="mi">0</span>  <span class="mi">2</span>  <span class="mi">0</span>   <span class="mi">0</span>  <span class="o">-</span><span class="mi">1</span>   <span class="mi">0</span>                  <span class="mf">0.10</span>
+<span class="mi">3</span>  <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">1</span>   <span class="mi">0</span>   <span class="mi">0</span>  <span class="o">-</span><span class="mi">1</span>                  <span class="mf">0.01</span>
+</pre></div>
+</div>
+<p>EQTK also does not assume an ordering to the columns. Therefore, the initial concentrations <code class="docutils literal notranslate"><span class="pre">c0</span></code> <em>must</em> be supplied as a Pandas Series or DataFrame.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a single calculation, a Series</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="c1"># For multiple calculations, a DataFrame</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                  <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The names of the indices for <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a Series and the columns for <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a DataFrame are the names of the chemical species, <em>not</em>, e.g., <code class="docutils literal notranslate"><span class="pre">'[A]__0</span> <span class="pre">(mM)'</span></code>. While such input may be convenient, as it allows for specification of units and matching outputs, this is not allowed. The user should explicitly supply the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument and ensure that <em>all</em> units of concentrations and equilibrium constants are consistent with those concentration units. It the user could specify units within the <code class="docutils literal notranslate"><span class="pre">c0</span></code> Series or DataFrame, the equilibrium constants units could be ambiguous, which is why the concentration units may only be specified with the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument.</p>
+</div>
+<p>When we call <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, we do not include the argument <code class="docutils literal notranslate"><span class="pre">K</span></code> because the equilibrium constants are already included in the inputted data frame. Executing</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N_df</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">~</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;__0&#39;</span><span class="p">)]]</span>
+</pre></div>
+</div>
+<p>gives</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">A</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">B</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">C</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">AB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BC</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>
+<span class="mi">0</span>  <span class="mf">0.952381</span>  <span class="mf">0.000000</span>  <span class="mf">0.047619</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>
+<span class="mi">1</span>  <span class="mf">0.498500</span>  <span class="mf">0.017382</span>  <span class="mf">0.024925</span>   <span class="mf">0.433250</span>   <span class="mf">0.003021</span>   <span class="mf">0.043325</span>
+<span class="mi">2</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>   <span class="mf">0.729418</span>   <span class="mf">0.060068</span>   <span class="mf">0.072942</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="free-energies-as-a-dictionary-of-pandas-series">
+<h4>Free energies as a dictionary of Pandas Series<a class="headerlink" href="#free-energies-as-a-dictionary-of-pandas-series" title="Permalink to this headline">¶</a></h4>
+<p>If, however, we wish to input the free energies of the chemical species instead of the equilibrium constants, the <code class="docutils literal notranslate"><span class="pre">'equilibrium</span> <span class="pre">constant'</span></code> column should not be in the inputted data frame. Again, because no order is assumed in the inputted data frame, <code class="docutils literal notranslate"><span class="pre">G</span></code> must be inputted as a Pandas Series with indices given by the names of the chemical species, or as a dictionary with the keys given by the names of the chemical species.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Name sure there is no &#39;equilibrium constant&#39; column in the data frame</span>
+<span class="n">N_df</span> <span class="o">=</span> <span class="n">N_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;equilibrium constant&#39;</span><span class="p">)</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">G_A</span><span class="p">,</span> <span class="n">G_B</span><span class="p">,</span> <span class="n">G_C</span><span class="p">,</span> <span class="n">G_AB</span><span class="p">,</span> <span class="n">G_BB</span><span class="p">,</span> <span class="n">G_BC</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N_df</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="summary-of-i-o-using-stoichiometric-matrices">
+<h3>Summary of I/O using stoichiometric matrices<a class="headerlink" href="#summary-of-i-o-using-stoichiometric-matrices" title="Permalink to this headline">¶</a></h3>
+<p>The table below summarizes the allowed input and output types for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> when specifying the problem in terms of the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>. (The table is wide, so may need to scroll to see the whole table.)</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 12%" />
+<col style="width: 13%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">N</span></code> format</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">K</span></code> format</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">G</span></code> format</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">c0</span></code> format</p></th>
+<th class="head"><p>minimal call</p></th>
+<th class="head"><p>output type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(r\times n\)</span> Numpy array</p></td>
+<td><p>length <span class="math notranslate nohighlight">\(r\)</span> Numpy array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eqtk.solve(c0,</span> <span class="pre">N=N,</span> <span class="pre">K=K)</span></code></p></td>
+<td><p>Numpy array (Series or DataFrame if <code class="docutils literal notranslate"><span class="pre">names</span></code> specified)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r\times n\)</span> Numpy array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>length <span class="math notranslate nohighlight">\(n\)</span> Numpy array</p></td>
+<td><p>Numpy array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eqtk.solve(c0,</span> <span class="pre">N=N,</span> <span class="pre">G=G)</span></code></p></td>
+<td><p>Numpy array    (Series or DataFrame if <code class="docutils literal notranslate"><span class="pre">names</span></code> specified)</p></td>
+</tr>
+<tr class="row-even"><td><p>DataFrame with <code class="docutils literal notranslate"><span class="pre">'equilibrium</span> <span class="pre">constant'</span></code> column</p></td>
+<td><p>column in <code class="docutils literal notranslate"><span class="pre">N</span></code> DataFrame</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Series, DataFrame, or dict</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eqtk.solve(c0,</span> <span class="pre">N=N)</span></code></p></td>
+<td><p>Series or DataFrame</p></td>
+</tr>
+<tr class="row-odd"><td><p>DataFrame without <code class="docutils literal notranslate"><span class="pre">'equilibrium</span> <span class="pre">constant'</span></code> column</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Series or dict</p></td>
+<td><p>Series, DataFrame, or dict</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eqtk.solve(c0,</span> <span class="pre">N=N,</span> <span class="pre">G=G)</span></code></p></td>
+<td><p>Series or DataFrame</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="conservation-matrix-a-given">
+<h2>Conservation matrix A given<a class="headerlink" href="#conservation-matrix-a-given" title="Permalink to this headline">¶</a></h2>
+<p>Instead of specifying a stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>, we may specify a conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. (<a class="reference external" href="core_concepts.html#conservation-laws">Recall</a> that <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> are related by <span class="math notranslate nohighlight">\(\mathsf{A}^\mathsf{T}\cdot\mathsf{N} = 0\)</span>, and we need only specify <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> <em>or</em> <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>.) If we specify the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>, however, we <em>must</em> specify the free energies <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>; the equilibrium constants are ill-defined absent a stoichiometric matrix. Each column of <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> corresponds to a chemical species. So, entry <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> is the free energy of the chemical species corresponding to column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>.</p>
+<p>Recall also that all entries of the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> <a class="reference external" href="core_concepts.html#specification-in-terms-of-conservation-matrices-and-free-energies">must be nonnegative</a>.</p>
+<p>We will use an elemental conservation matrix as an example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{A} =
+\begin{pmatrix}
+  \mathrm{A} &amp; \mathrm{B} &amp; \mathrm{C} &amp; \mathrm{AB} &amp; \mathrm{BB} &amp; \mathrm{BC} \\ \hline
+  1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+  0 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 1
+\end{pmatrix}.\end{split}\]</div>
+<div class="section" id="a-given-as-a-numpy-array">
+<h3>A given as a Numpy array<a class="headerlink" href="#a-given-as-a-numpy-array" title="Permalink to this headline">¶</a></h3>
+<p>If we choose to specify the argument <code class="docutils literal notranslate"><span class="pre">A</span></code> for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> as a Numpy array, <code class="docutils literal notranslate"><span class="pre">G</span></code> and <code class="docutils literal notranslate"><span class="pre">c0</span></code> must also be specified as Numpy arrays.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Use the same G as before</span>
+
+<span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is as before.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>A two-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code> has similar behavior as we have seen when <code class="docutils literal notranslate"><span class="pre">N</span></code> is specified.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mf">0.95238103</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.04761905</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.49849994</span><span class="p">,</span> <span class="mf">0.01738215</span><span class="p">,</span> <span class="mf">0.024925</span>  <span class="p">,</span> <span class="mf">0.43325006</span><span class="p">,</span> <span class="mf">0.00302139</span><span class="p">,</span> <span class="mf">0.04332501</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">names</span></code> keyword argument is supplied, the ordering of the names must match the ordering of <code class="docutils literal notranslate"><span class="pre">G</span></code> and the ordering of the columns in <code class="docutils literal notranslate"><span class="pre">N</span></code>. The result is then either a Pandas Series (for a single set of initial concentrations), or a Pandas DataFrame (for multiple initial concentrations). Executing</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+<span class="n">c</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">~</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;__0&#39;</span><span class="p">)]]</span>
+</pre></div>
+</div>
+<p>gives</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">A</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">B</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">C</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">AB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BC</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>
+<span class="mi">0</span>  <span class="mf">0.952381</span>  <span class="mf">0.000000</span>  <span class="mf">0.047619</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>
+<span class="mi">1</span>  <span class="mf">0.498500</span>  <span class="mf">0.017382</span>  <span class="mf">0.024925</span>   <span class="mf">0.433250</span>   <span class="mf">0.003021</span>   <span class="mf">0.043325</span>
+<span class="mi">2</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>   <span class="mf">0.729418</span>   <span class="mf">0.060068</span>   <span class="mf">0.072942</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-given-as-a-pandas-dataframe">
+<h3>A given as a Pandas DataFrame<a class="headerlink" href="#a-given-as-a-pandas-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>We can instead specify <code class="docutils literal notranslate"><span class="pre">A</span></code> as a Pandas DataFrame, where each column name is the chemical species name. In this case, <code class="docutils literal notranslate"><span class="pre">G</span></code> must be given either as a Pandas Series with indices corresponding to the column names of <code class="docutils literal notranslate"><span class="pre">A</span></code> or a dictionary with keys corresponding to those of <code class="docutils literal notranslate"><span class="pre">A</span></code>.  <code class="docutils literal notranslate"><span class="pre">c0</span></code> must also be supplied as a dictionary with keys given by the names of the chemical species, a Pandas Series with indices given by the species names, or a Pandas DataFrame with column names given by the species names.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+                 <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="c1"># Use same G&#39;s we calculated before and have been using</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="n">c0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+                  <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
+<span class="n">c</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">~</span><span class="n">c</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;__0&#39;</span><span class="p">)]]</span>
+</pre></div>
+</div>
+<p>The result is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">A</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">B</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">C</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">AB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BB</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>  <span class="p">[</span><span class="n">BC</span><span class="p">]</span> <span class="p">(</span><span class="n">mM</span><span class="p">)</span>
+<span class="mi">0</span>  <span class="mf">0.952381</span>  <span class="mf">0.000000</span>  <span class="mf">0.047619</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>   <span class="mf">0.000000</span>
+<span class="mi">1</span>  <span class="mf">0.498500</span>  <span class="mf">0.017382</span>  <span class="mf">0.024925</span>   <span class="mf">0.433250</span>   <span class="mf">0.003021</span>   <span class="mf">0.043325</span>
+<span class="mi">2</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>   <span class="mf">0.729418</span>   <span class="mf">0.060068</span>   <span class="mf">0.072942</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike in the case with supplying the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code> as a DataFrame, in which the equilibrium constants were given in the <code class="docutils literal notranslate"><span class="pre">N</span></code> DataFrame, no other information is included in the <code class="docutils literal notranslate"><span class="pre">A</span></code> DataFrame. Rather, <code class="docutils literal notranslate"><span class="pre">G</span></code> must be given separately.</p>
+</div>
+</div>
+<div class="section" id="summary-of-i-o-using-conservation-matrices">
+<h3>Summary of I/O using conservation matrices<a class="headerlink" href="#summary-of-i-o-using-conservation-matrices" title="Permalink to this headline">¶</a></h3>
+<p>The table below summarizes the allowed input and output types for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> when specifying the problem in terms of the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. (The table is wide, so may need to scroll to see the whole table.)</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 17%" />
+<col style="width: 16%" />
+<col style="width: 17%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">A</span></code> format</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">G</span></code> format</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">c0</span></code> format</p></th>
+<th class="head"><p>minimal call</p></th>
+<th class="head"><p>output type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n-r\times n\)</span> Numpy array</p></td>
+<td><p>length <span class="math notranslate nohighlight">\(n\)</span> Numpy array</p></td>
+<td><p>Numpy array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eqtk.solve(c0,</span> <span class="pre">A=A,</span> <span class="pre">G=G)</span></code></p></td>
+<td><p>Numpy array (Series or DataFrame if <code class="docutils literal notranslate"><span class="pre">names</span></code> specified)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DataFrame</p></td>
+<td><p>Series or dict</p></td>
+<td><p>Series, DataFrame, or dict</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eqtk.solve(c0,</span> <span class="pre">A=A,</span> <span class="pre">G=G)</span></code></p></td>
+<td><p>Series or DataFrame</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eqtk_fixed_value_solve.html" class="btn btn-neutral float-right" title="Equilibrium with some concentrations fixed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="High-level interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x6291afe90> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

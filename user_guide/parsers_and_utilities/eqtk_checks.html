@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Check satisfaction of equilibrium conditions &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Boltzmann constant" href="eqtk_constants.html" />
+    <link rel="prev" title="Compute the density of water" href="eqtk_water_density.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Parsers and utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eqtk_parse_rxns.html">Parse reactions as strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_parse_input.html">Prepare input for use in low-level functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_to_df.html">Convert Numpy output to Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_water_density.html">Compute the density of water</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Check satisfaction of equilibrium conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-of-satisfaction-of-equilibrium-and-conservation-conditions">Check of satisfaction of equilibrium and conservation conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantitative-check-in-error-in-equilibrium-and-conservation-conditions">Quantitative check in error in equilibrium and conservation conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_constants.html">Physical constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../../_sources/user_guide/parsers_and_utilities/eqtk_checks.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="check-satisfaction-of-equilibrium-conditions">
+<span id="eqtk-checks"></span><h1>Check satisfaction of equilibrium conditions<a class="headerlink" href="#check-satisfaction-of-equilibrium-conditions" title="Permalink to this headline">¶</a></h1>
+<p>If EQTK’s solve algorithm converges, equilibrium and conservation laws are guaranteed to be satisfied (see <span class="xref std std-ref">algorithmic details</span>). Nonetheless, it is sometimes useful to check if equilibrium conditions are met. To understand the discussion below, it may help to refresh yourself of the <a class="reference internal" href="../core_concepts.html#core-concepts"><span class="std std-ref">core concepts</span></a> behind the couple equilibrium problem.</p>
+<p>As a simple example, consider the chemical reactions</p>
+<p>AB ⇌ A + B ; <em>K</em> = <em>K₁</em></p>
+<p>AC ⇌ A + C ; <em>K</em> = <em>K₂</em></p>
+<p>The equilibrium conditions are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;K_1 = \frac{c_\mathrm{A}\,c_\mathrm{B}}{c_\mathrm{AB}},\\
+&amp;K_2 = \frac{c_\mathrm{A}\,c_\mathrm{C}}{c_\mathrm{AC}}.\end{split}\]</div>
+<p>Additionally, three conservation laws, corresponding to conservation of A, B, and C, must be satisfied.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;c_\mathrm{A}^0 = c_\mathrm{A} + c_\mathrm{AB} + c_\mathrm{AC},\\
+&amp;c_\mathrm{B}^0 = c_\mathrm{B} + c_\mathrm{AB},\\
+&amp;c_\mathrm{C}^0 = c_\mathrm{C} + c_\mathrm{AC}.\end{split}\]</div>
+<p>Together, these five equations define the equilibrium. We can write these conditions in terms of the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. The stoichiometric matrix corresponding to the chemical reactions is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{N} = \begin{pmatrix}
+1 &amp; 1 &amp; 0 &amp; -1 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; -1
+\end{pmatrix}.\end{split}\]</div>
+<p>The conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> has rows that span the null space of <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf{A} = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 1
+\end{pmatrix}.\end{split}\]</div>
+<p>If we define</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;\mathbf{c} = (c_\mathrm{A}, c_\mathrm{B}, c_\mathrm{C}, c_\mathrm{AB}, c_\mathrm{AC})^\mathsf{T},\\
+&amp;\mathbf{c}^0 = (c_\mathrm{A}^0, c_\mathrm{B}^0, c_\mathrm{C}^0, c_\mathrm{AB}^0, c_\mathrm{AC}^0)^\mathsf{T},\end{split}\]</div>
+<p>the equilibrium conditions are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp;K_1 = \prod_j c_j^{N_{1j}},\\
+&amp;K_2 = \prod_j c_j^{N_{2j}},\end{split}\]</div>
+<p>or more generally</p>
+<div class="math notranslate nohighlight">
+\[K_i = \prod_j c_j^{N_{ij}} \;\forall i.\]</div>
+<p>The condition for conservation is</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{A}\cdot\mathbf{c} = \mathsf{A} \cdot \mathbf{c}^0.\]</div>
+<div class="section" id="check-of-satisfaction-of-equilibrium-and-conservation-conditions">
+<h2>Check of satisfaction of equilibrium and conservation conditions<a class="headerlink" href="#check-of-satisfaction-of-equilibrium-and-conservation-conditions" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">eqtk.eqcheck()</span></code> function conveniently checks to make sure equilibrium and conservation conditions are met. To check equilibrium conditions, it verifies that</p>
+<div class="math notranslate nohighlight">
+\[\frac{\prod_j c_j^{N_{ij}}}{K_i} \approx 1 \;\forall i,\]</div>
+<p>where equality is checked to some tolerance.</p>
+<p>Similarly to check conservation conditions, it verifies that</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{A}\cdot\mathbf{c} - \mathsf{A} \cdot \mathbf{c}^0 \approx \mathbf{0}.\]</div>
+<p>Let’s use this function to verify that an equilibrium calculation was successful. To start with, we will use Numpy arrays as inputs. (In what follows, we assume EQTK, Numpy, and Pandas are all imported.)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">]</span>
+
+<span class="c1"># Solve</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verify calculation converged</span>
+<span class="n">eqtk</span><span class="o">.</span><span class="n">eqcheck</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The last function call returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If we instead <code class="docutils literal notranslate"><span class="pre">N</span></code> stored as a data frame and <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a series or data frame, it is not necessary to supply <code class="docutils literal notranslate"><span class="pre">K</span></code>, as it is already in the <code class="docutils literal notranslate"><span class="pre">N</span></code> data frame, nor is it necessary to supply <code class="docutils literal notranslate"><span class="pre">c0</span></code> or <code class="docutils literal notranslate"><span class="pre">units</span></code>, as they can be inferred from <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;AB&quot;</span><span class="p">,</span> <span class="s2">&quot;AC&quot;</span><span class="p">]</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                                       <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+<span class="n">N</span><span class="p">[</span><span class="s1">&#39;equilibrium_constant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">]</span>
+
+<span class="c1"># Solve</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verify calculation converged</span>
+<span class="n">eqtk</span><span class="o">.</span><span class="n">eqcheck</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This calculation again returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div>
+<div class="section" id="quantitative-check-in-error-in-equilibrium-and-conservation-conditions">
+<h2>Quantitative check in error in equilibrium and conservation conditions<a class="headerlink" href="#quantitative-check-in-error-in-equilibrium-and-conservation-conditions" title="Permalink to this headline">¶</a></h2>
+<p>To get more detailed information, specifically the value of the ratio</p>
+<div class="math notranslate nohighlight">
+\[\frac{\prod_j c_j^{N_{ij}}}{K_i}\]</div>
+<p>and the difference</p>
+<div class="math notranslate nohighlight">
+\[\mathsf{A}\cdot\mathbf{c} - \mathsf{A} \cdot \mathbf{c}^0,\]</div>
+<p>you can use the <code class="docutils literal notranslate"><span class="pre">return_detailed=True</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">eqtk.eqcheck()</span></code>. With this keyword argument, it returns</p>
+<ol class="arabic simple">
+<li><p>A Boolean as to whether all equilibrium and conservation conditions are met.</p></li>
+<li><p>An array of the ratios <span class="math notranslate nohighlight">\(\prod_j c_j^{N_{ij}}/K_i\)</span>.</p></li>
+<li><p>An array of Booleans that are <code class="docutils literal notranslate"><span class="pre">True</span></code> if this ratio is close to unity.</p></li>
+<li><p>An array of differences <span class="math notranslate nohighlight">\(\mathbf{A}_i\cdot\mathbf{c} - \mathbf{A}_i \cdot \mathbf{c}^0\)</span> for each row <span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>.</p></li>
+<li><p>An array of Booleans that are <code class="docutils literal notranslate"><span class="pre">True</span></code> if this difference is close to zero.</p></li>
+</ol>
+<p>Running</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">eqcheck</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">return_detailed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>returns</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="kc">True</span><span class="p">,</span>
+<span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]),</span>
+<span class="n">array</span><span class="p">([</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">]),</span>
+<span class="n">array</span><span class="p">([</span><span class="mf">6.17794068e-17</span><span class="p">,</span> <span class="mf">3.43217750e-17</span><span class="p">,</span> <span class="mf">1.57451566e-16</span><span class="p">]),</span>
+<span class="n">array</span><span class="p">([</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eqtk_constants.html" class="btn btn-neutral float-right" title="The Boltzmann constant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="eqtk_water_density.html" class="btn btn-neutral float-left" title="Compute the density of water" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x629119150> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick start &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core concepts" href="../user_guide/core_concepts.html" />
+    <link rel="prev" title="Installation" href="eqtk_installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problem-specification">Problem specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eqtk-solve">eqtk.solve()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-a-titration-curve">Computing a titration curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rich-input-output-formats">Rich input/output formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../_sources/getting_started/quickstart.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="quick-start">
+<span id="quickstart"></span><h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>The first step to getting started is to <a class="reference internal" href="eqtk_installation.html#installation"><span class="std std-ref">install EQTK</span></a>. After that is done, you can start solving equilibrium problems.</p>
+<div class="section" id="problem-specification">
+<h2>Problem specification<a class="headerlink" href="#problem-specification" title="Permalink to this headline">¶</a></h2>
+<p>EQTK solves the following problem:</p>
+<blockquote>
+<div><p>Given a set of chemical reactions and their equilibrium constants, as well as concentrations of all chemical species initially in a dilute solution, compute the equilibrium concentration of all chemical species.</p>
+</div></blockquote>
+<p>As an example, consider a ligand A that may bind to either of two receptors, B and C, according to the following chemical reactions with associated equilibrium constants.</p>
+<p>AB ⇌ A + B ; K = 0.015 mM</p>
+<p>AC ⇌ A + C ; K = 0.003 mM</p>
+<p>With the chemical reactions and equilibrium constants defined, we have to further specify what is placed in solution. Imagine we add A, B, and C into the solution such that the initial concentrations of the respective species are 1 mM, 0.5 mM, and 0.25 mM,
+and we initially have no AB or AC complexes. The problem is now fully specified.</p>
+</div>
+<div class="section" id="eqtk-solve">
+<h2>eqtk.solve()<a class="headerlink" href="#eqtk-solve" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> function is the central function of EQTK. In the simplest form, it takes three arguments.</p>
+<ul class="simple">
+<li><p>Initial concentrations of all species, <cite>c0</cite>.</p></li>
+<li><p>A <strong>stoichiometric matrix</strong>, <cite>N</cite>.</p></li>
+<li><p>An array of equilibrium constants, <cite>K</cite>.</p></li>
+</ul>
+<p>In the present example, <code class="docutils literal notranslate"><span class="pre">c0</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">0.5,</span> <span class="pre">0.25,</span> <span class="pre">0,</span> <span class="pre">0]</span></code>, where we have ordered the species A, B, C, AB, AC.</p>
+<p>Entry <code class="docutils literal notranslate"><span class="pre">i,j</span></code> of the stoichiometric matrix is the stoichiometric coefficient for species <code class="docutils literal notranslate"><span class="pre">j</span></code> in chemical reaction <code class="docutils literal notranslate"><span class="pre">i</span></code>. The stoichiometric coefficients of reactants are negative and those of products are positive. This is perhaps more clear if we write the chemical reactions in an alternative way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">+</span> <span class="n">B</span>     <span class="o">-</span> <span class="n">AB</span>      <span class="o">=</span> <span class="mi">0</span>
+<span class="n">A</span>     <span class="o">+</span> <span class="n">C</span>      <span class="o">-</span> <span class="n">AC</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The stoichiometric matrix is then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Finally, the equilibrium constants are <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">[0.015,</span> <span class="pre">0.003]</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The units of the inputted <code class="docutils literal notranslate"><span class="pre">c0</span></code> and <code class="docutils literal notranslate"><span class="pre">K</span></code> must be consistent, meaning that they both must use the same units for concentration. In this case, the concentration units are millimolar. The units are then specified with <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>’s <cite>units</cite> keyword argument.</p>
+</div>
+<p>Now we can solve the system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because the numerical routines of EQTK are <a class="reference external" href="http://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compiled</a> (JITted), importing EQTK may take a few seconds, as will the first call you make to <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. Subsequent calculations will be fast.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">eqtk</span>
+
+<span class="n">c0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">]</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">c</span></code> is given below, with the same units as specified with the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument (mM in this case).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.27824281</span><span class="p">,</span> <span class="mf">0.02557607</span><span class="p">,</span> <span class="mf">0.00266673</span><span class="p">,</span> <span class="mf">0.47442393</span><span class="p">,</span> <span class="mf">0.24733327</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="computing-a-titration-curve">
+<h2>Computing a titration curve<a class="headerlink" href="#computing-a-titration-curve" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">c0</span></code> may be inputted as a two-dimensional array, where each row corresponds to a different initial set of concentrations. For example, if we wanted to compute a titration curve for the fraction of the receptors B and C that are bound as we increase the amount of ligand A present in the solution, we can do the following.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">eqtk</span>
+
+<span class="c1"># Set up initial concentrations for titration</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">c0</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">c0</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">c0</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span>
+
+<span class="c1"># Stoichiometry matrix</span>
+<span class="n">N</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1"># Equilibrium constants</span>
+<span class="n">K</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">]</span>
+
+<span class="c1"># Solve!</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute fraction bound</span>
+<span class="n">frac_B_bound</span> <span class="o">=</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="n">c0</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">frac_C_bound</span> <span class="o">=</span> <span class="n">c</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">/</span> <span class="n">c0</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here is a plot of the result.</p>
+
+<script src="bokeh-plot-954bd88571954e29911a1cbc317100f6-external-getting_started-quickstart.js" id="cb707aa3-3d9d-47b5-a623-d527880b0617"></script></div>
+<div class="section" id="rich-input-output-formats">
+<h2>Rich input/output formats<a class="headerlink" href="#rich-input-output-formats" title="Permalink to this headline">¶</a></h2>
+<p>Instead of using lists, tuples, and Numpy arrays for specifying inputs, and thereafter relying on integer-based indexing to retrieve results, the stoichiometry, equilibrium constants, and initial concentrations may be specified as <a class="reference external" href="http://pandas.pydata.org">Pandas</a> series and data frames. This allows for chemical species to be referenced by name. Conveniently, EQTK includes a parser that converts chemical reactions written a strings to data frames using syntax similar to <a class="reference external" href="http://cantera.org">Cantera</a>. We can alternatively specify the problem as below, this time also considering dimerization of the ligand A,</p>
+<p>AA ⇌ 2A ; K = 0.02 mM.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">eqtk</span>
+
+<span class="n">rxns</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">AB &lt;=&gt; A + B ; 0.015</span>
+<span class="s2">AC &lt;=&gt; A + C ; 0.003</span>
+<span class="s2">AA &lt;=&gt; 2 A   ; 0.02</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">parse_rxns</span><span class="p">(</span><span class="n">rxns</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">N</span></code> is now a Pandas data frame:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">AB</span>    <span class="n">A</span>    <span class="n">B</span>   <span class="n">AC</span>    <span class="n">C</span>   <span class="n">AA</span>  <span class="n">equilibrium</span> <span class="n">constant</span>
+<span class="mi">0</span> <span class="o">-</span><span class="mf">1.0</span>  <span class="mf">1.0</span>  <span class="mf">1.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>                 <span class="mf">0.015</span>
+<span class="mi">1</span>  <span class="mf">0.0</span>  <span class="mf">1.0</span>  <span class="mf">0.0</span> <span class="o">-</span><span class="mf">1.0</span>  <span class="mf">1.0</span>  <span class="mf">0.0</span>                 <span class="mf">0.003</span>
+<span class="mi">2</span>  <span class="mf">0.0</span>  <span class="mf">2.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span> <span class="o">-</span><span class="mf">1.0</span>                 <span class="mf">0.020</span>
+</pre></div>
+</div>
+<p>The data frame <code class="docutils literal notranslate"><span class="pre">N</span></code> now also includes the equilibrium constant for each reaction. This can be passed directly into <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, and specification of <code class="docutils literal notranslate"><span class="pre">K</span></code> is no longer necessary, since <code class="docutils literal notranslate"><span class="pre">N</span></code> now contains the equilibrium constants.</p>
+<p>Because the chemical species now have names, we should pass <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a Pandas Series (for a single equilibrium calculation), as a DataFrame (for a titration-like calculations as we did in the last example), or as a dictionary.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;AB&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;AC&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">c</span></code> is a Pandas series.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A__0</span>     <span class="mf">1.000000</span>
+<span class="n">B__0</span>     <span class="mf">0.500000</span>
+<span class="n">C__0</span>     <span class="mf">0.250000</span>
+<span class="n">AA__0</span>    <span class="mf">0.000000</span>
+<span class="n">AB__0</span>    <span class="mf">0.000000</span>
+<span class="n">AC__0</span>    <span class="mf">0.000000</span>
+<span class="n">A</span>        <span class="mf">0.055910</span>
+<span class="n">B</span>        <span class="mf">0.105768</span>
+<span class="n">C</span>        <span class="mf">0.012731</span>
+<span class="n">AA</span>       <span class="mf">0.156295</span>
+<span class="n">AB</span>       <span class="mf">0.394232</span>
+<span class="n">AC</span>       <span class="mf">0.237269</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>The result includes the initial concentrations of each species, with the species names appended with <code class="docutils literal notranslate"><span class="pre">__0</span></code>.</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="xref std std-ref">user guide</span> has more details about</p>
+<ul class="simple">
+<li><p>The class of problems EQTK can solve.</p></li>
+<li><p>All modes of specifying the problem.</p></li>
+<li><p>Lower level interfaces to the equilibrium solving algorithm.</p></li>
+</ul>
+<p>Finally, the <span class="xref std std-ref">case studies</span> section of this guide provides examples of using EQTK to study chemical systems.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../user_guide/core_concepts.html" class="btn btn-neutral float-right" title="Core concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="eqtk_installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x629276990> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

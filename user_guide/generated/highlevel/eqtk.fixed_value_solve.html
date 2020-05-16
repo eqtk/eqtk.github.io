@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eqtk.fixed_value_solve &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="eqtk.volumetric_titration" href="eqtk.volumetric_titration.html" />
+    <link rel="prev" title="eqtk.solve" href="eqtk.solve.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../api.html#high-level-functions">High-level functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="eqtk.solve.html">eqtk.solve</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">eqtk.fixed_value_solve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqtk.volumetric_titration.html">eqtk.volumetric_titration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#parsers-and-utilities">Parsers and utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#low-level-functions">Low-level functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../../../_sources/user_guide/generated/highlevel/eqtk.fixed_value_solve.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="eqtk-fixed-value-solve">
+<h1>eqtk.fixed_value_solve<a class="headerlink" href="#eqtk-fixed-value-solve" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="eqtk.fixed_value_solve">
+<code class="sig-prename descclassname">eqtk.</code><code class="sig-name descname">fixed_value_solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c0</span></em>, <em class="sig-param"><span class="n">fixed_c</span></em>, <em class="sig-param"><span class="n">N</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">K</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">logK</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">A</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">G</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">G_units</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">solvent_density</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">293.15</span></em>, <em class="sig-param"><span class="n">return_log</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">normal_A</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">tol_zero</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_iters</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">delta_bar</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">0.125</span></em>, <em class="sig-param"><span class="n">min_delta</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_trials</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">perturb_scale</span><span class="o">=</span><span class="default_value">100.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#eqtk.fixed_value_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve for equilibrium concentrations of all species in a dilute
+solution where one or more species has a fixed concentration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c0</strong> (<em>array_like</em><em>, </em><em>dict</em><em>, </em><em>Series</em><em>, or </em><em>DataFrame</em><em>,</em>) – shape (n_points, n_compounds) or (n_compounds, )
+Each row contains the total “initial” concentration of all
+possible chemical species in solution. The equilibrium
+concentration of all species is computed for each row in <cite>c0</cite>.
+<cite>c0[i, j]</cite> is the initial concentration of compound <cite>j</cite> for
+calculation <cite>i</cite>. <cite>c0</cite> may also be passed as a Pandas Series
+where the indices contain the name of the chemical species and
+each value is the “initial concentration.” <cite>c0</cite> may also be
+passed as a Pandas DataFrame where each row contains the total
+“initial” concentration of all possible compounds in solution
+and the column names are the names of the chemical species. If
+<cite>c0</cite> is passed as a dict, the dict must be convertible to a
+Pandas Series or DataFrame as <cite>pd.Series(c0)</cite> or
+<cite>pd.DataFrame(c0)</cite>.</p></li>
+<li><p><strong>fixed_c</strong> (<em>array_like</em><em>, </em><em>dict</em><em>, </em><em>Series</em><em>, or </em><em>DataFrame</em><em>,</em>) – shape (n_points, n_compounds) or (n_compounds, )
+Inputted the same as <cite>c0</cite>. Any positive entry is interpreted to
+mean the the concentration of that species is fixed to that
+value. If an entry is negative of <cite>np.nan</cite>, then the
+concentration of that species is not fixed. Zero entries are not
+allowed.</p></li>
+<li><p><strong>N</strong> (array_like or DataFrame, default <cite>None</cite>) – Stoichiometic matrix. <cite>N[r, j]</cite> = the stoichiometric coefficient
+of compound <cite>j</cite> in chemical reaction <cite>r</cite>. All rows of <cite>N</cite> must
+be linearly independent. If entered as a DataFrame, the name of
+chemical species <cite>j</cite> is <cite>N.columns[j]</cite>. Optionally, column
+<cite>‘equilibrium constant’</cite> contains the equilibrium constants for
+each reaction in units commensurate with those of <cite>c0</cite>. If <cite>N</cite>
+is given, <cite>A</cite> and <cite>G</cite> cannot be given.</p></li>
+<li><p><strong>K</strong> (array_like, shape (n_reactions,), default <cite>None</cite>) – <cite>K[r]</cite> is the equilibrium constant for chemical reaction r in
+units commensurate with those of <cite>c0</cite>. If <cite>N</cite> is given as a
+DataFrame with an <cite>‘equilibrium constant’</cite> column, <cite>K</cite> should
+not be supplied. If <cite>K`is given, `A</cite> and <cite>G</cite> cannot be given.</p></li>
+<li><p><strong>logK</strong> (array_like, shape (n_reactions,), default <cite>None</cite>) – <cite>logK[r]</cite> is the natural logarithm of the equilibrium constant
+for chemical reaction r. If <cite>logK</cite> is specified, the
+concentrations must all be dimensionless (<cite>units=None</cite>). If <cite>N</cite>
+is given as a DataFrame with a <cite>‘log equilibrium constant’</cite>
+column, <cite>logK</cite> should not be supplied. If <cite>K</cite> is given, <cite>A</cite>,
+<cite>G</cite>, and <cite>K</cite> cannot be given.</p></li>
+<li><p><strong>A</strong> (<em>Not implemented.</em>) – Solving for equilibria with some concentrations fixed is only
+implemented if the <cite>N</cite> and <cite>K</cite> are specified.</p></li>
+<li><p><strong>G</strong> (<em>Not implemented.</em>) – Solving for equilibria with some concentrations fixed is only
+implemented if the <cite>N</cite> and <cite>K</cite> are specified.</p></li>
+<li><p><strong>names</strong> (list or tuple of str, default <cite>None</cite>, optional) – The names of the chemical species. Names are inferred if <cite>N</cite> or
+<cite>A</cite> is given as a DataFrame, in which case <cite>names</cite> is
+unnecessary.</p></li>
+<li><p><strong>units</strong> (string or <cite>None</cite>, default <cite>None</cite>) – The units of the concentrations inputted as <cite>c0</cite>. The output is
+also in these units. Allowable values are {<cite>None</cite>,
+‘mole fraction’, ‘molar’, ‘M’, ‘millimolar’, ‘mM’, ‘micromolar’,
+‘uM’, ‘µM’, ‘nanomolar’, ‘nM’, ‘picomolar’, ‘pM’}. If <cite>None</cite>,
+concentrations are considered to be dimensionless. The
+equilibrium constants given by <cite>K</cite> must have corresponding
+units.</p></li>
+<li><p><strong>G_units</strong> (string, default <cite>None</cite>) – Units in which free energy is given. If <cite>None</cite> or <cite>‘kT’</cite>, the
+free  energies are specified in units of of the thermal energy
+kT. Allowable values are {None, ‘kT’, kcal/mol’, ‘J’, ‘J/mol’,
+‘kJ/mol’, ‘pN-nm’}.</p></li>
+<li><p><strong>solvent_density</strong> (float, default <cite>None</cite>) – The density of the solvent in units commensurate with the
+<cite>units</cite> keyword argument. Default (<cite>None</cite>) assumes the solvent
+is water, and its density is computed at the temperature
+specified by the <cite>T</cite> keyword argument.</p></li>
+<li><p><strong>T</strong> (<em>float</em><em>, </em><em>default = 293.15</em>) – Temperature, in Kelvin, of the solution. When <cite>N</cite> and <cite>K</cite> are
+given, <cite>T</cite> is ignored if <cite>solvent_density</cite> is given or if
+<cite>units</cite> is <cite>None</cite>. If <cite>A</cite> and <cite>G</cite> are given, <cite>T</cite> is ignored when
+<cite>units</cite> and <cite>G_units</cite> are both <cite>None</cite>.</p></li>
+<li><p><strong>return_log</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, return the natural logarithm of the concentrations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>c</strong> – Equilibrium concentrations of all species. <cite>c[i, j]</cite> is the
+equilibrium concentration of species <cite>j</cite> for initial
+concentrations given by <cite>c0[i, :]</cite> in units given by <cite>units</cite>. If
+<cite>c0</cite> is inputted as a DataFrame or <cite>names</cite> is not <cite>None</cite>, then
+<cite>c</cite> is a DataFrame with columns given by <cite>names</cite> or with the
+same columns (without <cite>‘equilibrium constant’</cite>) as <cite>c0</cite>.
+Otherwise, <cite>c</cite> is returned as a Numpy array with the same shape
+as <cite>c0</cite>. If <cite>return_log</cite> is True, then the return value is the
+natural logarithm of the dimensionless concentrations.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array or DataFrame, shape c0.shape</p>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>normal_A</strong> (<em>bool, default True</em>) – If True, perform a transformation on <cite>A</cite> such that its rows are
+orthonormal. If False, use inputted <cite>A</cite> directly as the
+conservation matrix. This is ignored if <cite>A</cite> is not specified;
+the resulting conservation matrix in that case has orthonormal
+rows by construction.</p></li>
+<li><p><strong>tol</strong> (<em>float, default 1e-7</em>) – Tolerance for convergence. The absolute tolerance for a given
+initial concentration c0 (a one-dimensional array) for the
+conservation conditions are tol * np.dot(A, c0) except when an
+entry in np.dot(A, c0) is zero. If that is the case for entry i,
+then the absolute tolerance is tol * np.max(A[i] * c0). If all
+entries in A[i] * c0 are zero, which only happens with c0 = 0,
+the absolute tolerance is <cite>tol_zero</cite>.</p></li>
+<li><p><strong>tol_zero</strong> (<em>float, default 1e-12</em>) – Absolute tolerance for convergence when the initial
+concentrations are all zero. This cannot really be set a priori;
+it depends on the scale of the dimensionless concentrations. By
+default, assume an absolute tolerance consistent with <cite>tol</cite> and
+millimolar mole fractions.</p></li>
+<li><p><strong>max_iters</strong> (<em>int, default 1000</em>) – Maximum number of iterations allowed in trust region method.</p></li>
+<li><p><strong>delta_bar</strong> (<em>float, default 1000.0</em>) – Maximum step size allowed in the trust region method.</p></li>
+<li><p><strong>eta</strong> (<em>float, default 0.125</em>) – Value for eta in the trust region method. <cite>eta</cite> must satisfy
+<cite>0 &lt; eta &lt; 0.25</cite>.</p></li>
+<li><p><strong>min_delta</strong> (<em>float, default 1e-12</em>) – Minimal allowed radius of the trust region. When the trust
+region radius gets below <cite>min_delta</cite>, the trust region
+iterations stop, and a final set of Newton steps is attempted.</p></li>
+<li><p><strong>max_trials</strong> (<em>int, default 100</em>) – In the event that an attempt to solve does not converge, the
+solver tries again with different initial guesses.
+This continues until <cite>max_trials</cite> failures.</p></li>
+<li><p><strong>perturb_scale</strong> (<em>float, default 100.0</em>) – Multiplier on random perturbations to the initial guesses
+as new ones are generated.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – If input is in any way invalid</p></li>
+<li><p><strong>RuntimeError</strong> – If the trust region algorithm failed to converge</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p>Nocedal and Wright, Numerical Optimization, Second Edition,
+Springer, 2006, Chapter 4.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eqtk.volumetric_titration.html" class="btn btn-neutral float-right" title="eqtk.volumetric_titration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="eqtk.solve.html" class="btn btn-neutral float-left" title="eqtk.solve" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x6291a7ed0> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

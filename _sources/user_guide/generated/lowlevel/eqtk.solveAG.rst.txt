@@ -1,0 +1,6 @@
+eqtk.solveAG
+============
+
+.. currentmodule:: eqtk
+
+.. autofunction:: solveAG

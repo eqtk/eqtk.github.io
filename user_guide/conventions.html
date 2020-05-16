@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Conventions &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High-level interfaces" href="high_level/index.html" />
+    <link rel="prev" title="Core concepts" href="core_concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#concentration-units">Concentration units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#energy-units">Energy units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assumptions-about-the-solvent">Assumptions about the solvent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conventions-for-low-level-interface">Conventions for low-level interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../_sources/user_guide/conventions.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="conventions">
+<span id="id1"></span><h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
+<p>Here, we define the conventions for units and solvent properties for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, EQTK’s high level interface for solving couple equilibria. We describe the conventions for the low-level interfaces at the bottom of this page.</p>
+<div class="section" id="concentration-units">
+<h2>Concentration units<a class="headerlink" href="#concentration-units" title="Permalink to this headline">¶</a></h2>
+<p>All inputs and outputs describing concentrations (initial concentrations, equilibrium constants, and equilibrium concentrations) are assumed to be in the same units. These units are then specified with the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument. Allowed units are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>  (default, specifies that concentrations are dimensionless)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;mole</span> <span class="pre">fraction&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;M&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;molar&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;mM&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;millimolar&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;µM&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;uM&quot;</span></code> (synonym for micromolar)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;micromolar&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;nM&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;nanomolar&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;pM&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;picomolar&quot;</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="energy-units">
+<h2>Energy units<a class="headerlink" href="#energy-units" title="Permalink to this headline">¶</a></h2>
+<p>The free energies <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> may also carry units, and these must be specified using the <code class="docutils literal notranslate"><span class="pre">G_units</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The allowed energy units are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>  (default)</p></li>
+<li><p>“kcal/mol”</p></li>
+<li><p>“J”</p></li>
+<li><p>“J/mol”</p></li>
+<li><p>“kJ/mol”</p></li>
+<li><p>“pN-nm”</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">G_units</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the inputted free energies are assumed to be in units of the thermal energy, <span class="math notranslate nohighlight">\(kT\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is the Boltzmann constant. If <code class="docutils literal notranslate"><span class="pre">G_units</span></code> are specified, the user should be sure to properly set the value of the <code class="docutils literal notranslate"><span class="pre">T</span></code> keyword argument, which gives the temperature of the solution in Kelvin. The default is <code class="docutils literal notranslate"><span class="pre">T=293.15</span></code>.</p>
+<p>It takes as required input the initial concentrations <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>. The user is also required to specify the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the equilibrium constants <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, or the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and the free energies of all chemical species <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>.</p>
+</div>
+<div class="section" id="assumptions-about-the-solvent">
+<h2>Assumptions about the solvent<a class="headerlink" href="#assumptions-about-the-solvent" title="Permalink to this headline">¶</a></h2>
+<p>By default, EQTK assumes the solvent is water at atmospheric pressure and a temperature of 293.15 K. The temperature is adjusted using the <code class="docutils literal notranslate"><span class="pre">T</span></code> keyword argument, which allows specification of the temperature in Kelvin.</p>
+<p>If the solvent is not water at atmospheric pressure, the user must specify the <strong>number density</strong> (<em>not</em> mass density) of the solvent in the same concentration units as specified by the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument. For example, at atmospheric pressure and room temperature, <span class="math notranslate nohighlight">\(\rho_\mathrm{H_2O} \approx 55\)</span> moles per liter.</p>
+<p>Note that if the concentrations are given as mole fractions (<code class="docutils literal notranslate"><span class="pre">units=None</span></code>), then the solvent density is not necessary.</p>
+</div>
+<div class="section" id="conventions-for-low-level-interface">
+<h2>Conventions for low-level interface<a class="headerlink" href="#conventions-for-low-level-interface" title="Permalink to this headline">¶</a></h2>
+<p>The low-level interfaces to the equilibrium solver, <code class="docutils literal notranslate"><span class="pre">eqtk.solveNK()</span></code>, <code class="docutils literal notranslate"><span class="pre">eqtk.solveNG()</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk.solveAG()</span></code>, use only dimensionless concentration and energy units. This means that the concentrations are all mole fractions and equilibrium constants are dimenesionless. All free energies are in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span>, where <cite>k</cite> is the Boltzmann constant and <span class="math notranslate nohighlight">\(T\)</span> is the temperature.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="high_level/index.html" class="btn btn-neutral float-right" title="High-level interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_concepts.html" class="btn btn-neutral float-left" title="Core concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x629100d90> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

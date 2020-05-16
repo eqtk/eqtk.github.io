@@ -1,0 +1,6 @@
+eqtk.water\_density
+===================
+
+.. currentmodule:: eqtk
+
+.. autofunction:: water_density

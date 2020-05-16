@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parse input to high-level interface &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Convert output to Pandas DataFrame" href="eqtk_to_df.html" />
+    <link rel="prev" title="Parse reactions given as strings" href="eqtk_parse_rxns.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Parsers and utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eqtk_parse_rxns.html">Parse reactions as strings</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Prepare input for use in low-level functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_to_df.html">Convert Numpy output to Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_water_density.html">Compute the density of water</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_checks.html">Check satisfaction of equilibrium conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqtk_constants.html">Physical constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../../_sources/user_guide/parsers_and_utilities/eqtk_parse_input.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="parse-input-to-high-level-interface">
+<span id="eqtk-parse-input"></span><h1>Parse input to high-level interface<a class="headerlink" href="#parse-input-to-high-level-interface" title="Permalink to this headline">¶</a></h1>
+<p>The high level interface functions (<code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, <code class="docutils literal notranslate"><span class="pre">eqtk.fixed_value_solve()</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk.volumetric_titration()</span></code>) take arguments as a variety of data types, including <code class="docutils literal notranslate"><span class="pre">None</span></code>, but the low-level function require strict typing. All three high-level functions take as arguments</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">c0</span></code>, initial concentrations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>, stoichiometric matrix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">K</span></code>, equilibrium constants</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logK</span></code>, natural logarithm of dimensionless equilibrium constants</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>, conservation matrix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">G</span></code>, free energies of chemical species</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">names</span></code>, names of chemical species</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code>, units of concentration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">G_units</span></code>, units of energy</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solvent_density</span></code>, number density of solvent</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>, temperature in units of Kelvin</p></li>
+</ul>
+<p>The low-level functions take the natural logarithm of dimensionless <code class="docutils literal notranslate"><span class="pre">K</span></code> as an argument.
+Additionally, <code class="docutils literal notranslate"><span class="pre">c0</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> must be dimensionless. The variables must have the following data types.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x0</span></code>: Numpy array, dtype float, shape (n_points, n_compounds)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: Numpy array, dtype float, shape (n_reactions, n_compounds)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logK</span></code>: Numpy array, dtype float, shape (n_reactions,)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: Numpy array, dtype float, shape (n_conserv_laws, n_compounds)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">G</span></code>: Numpy array, dtype float, shape (n_compounds,)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">names</span></code>: list of strings, len n_compounds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solvent_density</span></code>: float</p></li>
+</ul>
+<p>Once everything is converted to dimensionless units and the solvent density is computed, <code class="docutils literal notranslate"><span class="pre">units</span></code>, <code class="docutils literal notranslate"><span class="pre">G_units</span></code>, and <code class="docutils literal notranslate"><span class="pre">T</span></code> are no longer needed.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">eqtk.parse_input()</span></code> converts input to these data types for use in lower level function. For most applications, users use the high-level functions and do not need to directly call <code class="docutils literal notranslate"><span class="pre">eqtk.parse_input()</span></code>, but this function can be useful if you intend to use the low-level interfaces, for example for repeated calculations, and want to appropriately prepare their input.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">eqtk.parse_input()</span></code> function has one additional return value. For formatting the output in the high-level interface, it is also useful to know if there is a single calculation to be done, or if multiple sets of initial concentrations are given. <code class="docutils literal notranslate"><span class="pre">eqtk.parse_input()</span></code> also returns a boolean that is True if only one calculation is to be computed.</p>
+<p>We show as an example the dissociation of oxalic acid in presence of hydroxide.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rxns</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">       &lt;=&gt; OH⁻ + H⁺    ; 1e-14</span>
+<span class="s2">C₂O₄H₂ &lt;=&gt; C₂O₄H⁻ + H⁺ ; 0.0537</span>
+<span class="s2">C₂O₄H⁻ &lt;=&gt; C₂O₄²⁻ + H⁺ ; 5.37e-5</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">c0</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C₂O₄H₂&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;OH⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;H⁺&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;C₂O₄H⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;C₂O₄²⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="c1"># We could first convert rxn&#39;s to N using eqtk.parse_rxns(rxns),</span>
+<span class="c1"># but don&#39;t have to.</span>
+
+<span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">logK</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">solvent_density</span><span class="p">,</span> <span class="n">single_point</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">parse_input</span><span class="p">(</span>
+    <span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span>
+    <span class="n">N</span><span class="o">=</span><span class="n">rxns</span><span class="p">,</span>
+    <span class="n">K</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">logK</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">A</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">units</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
+    <span class="n">solvent_density</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">T</span><span class="o">=</span><span class="mf">293.15</span><span class="p">,</span>
+    <span class="n">G_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x0:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;logK:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">logK</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;G:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;names:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solvent_density:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">solvent_density</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;single_point:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">single_point</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span><span class="p">:</span>
+ <span class="p">[[</span><span class="mf">0.00180476</span> <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>        <span class="p">]]</span>
+
+<span class="n">N</span><span class="p">:</span>
+ <span class="p">[[</span> <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">0.</span>  <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">1.</span>  <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.</span>  <span class="mf">0.</span>  <span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span>  <span class="mf">1.</span><span class="p">]]</span>
+
+<span class="n">logK</span><span class="p">:</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">40.26567237</span>  <span class="o">-</span><span class="mf">6.93908281</span> <span class="o">-</span><span class="mf">13.84683809</span><span class="p">]</span>
+
+<span class="n">A</span><span class="p">:</span>
+ <span class="kc">None</span>
+
+<span class="n">G</span><span class="p">:</span>
+ <span class="kc">None</span>
+
+<span class="n">names</span><span class="p">:</span>
+ <span class="p">[</span><span class="s1">&#39;C₂O₄H₂&#39;</span><span class="p">,</span> <span class="s1">&#39;OH⁻&#39;</span><span class="p">,</span> <span class="s1">&#39;H⁺&#39;</span><span class="p">,</span> <span class="s1">&#39;C₂O₄H⁻&#39;</span><span class="p">,</span> <span class="s1">&#39;C₂O₄²⁻&#39;</span><span class="p">]</span>
+
+<span class="n">solvent_density</span><span class="p">:</span>
+ <span class="mf">55.408916789969595</span>
+
+<span class="n">single_point</span><span class="p">:</span>
+ <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eqtk_to_df.html" class="btn btn-neutral float-right" title="Convert output to Pandas DataFrame" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="eqtk_parse_rxns.html" class="btn btn-neutral float-left" title="Parse reactions given as strings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x122bca450> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>

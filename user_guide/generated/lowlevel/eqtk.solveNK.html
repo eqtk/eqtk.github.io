@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eqtk.solveNK &mdash; EQTK 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/togglebutton.js"></script>
+        <script >var togglebuttonSelector = '.toggle';</script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="eqtk.solveNG" href="eqtk.solveNG.html" />
+    <link rel="prev" title="eqtk.eqcheck" href="../parsers/eqtk.eqcheck.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #827F7F" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/eqtk_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quick start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../core_concepts.html">Core concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../high_level/index.html">High-level interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parsers_and_utilities/index.html">Parsers and utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../low_level_interface.html">EQTK low level interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#high-level-functions">High-level functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#parsers-and-utilities">Parsers and utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../api.html#low-level-functions">Low-level functions</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">eqtk.solveNK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqtk.solveNG.html">eqtk.solveNG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqtk.solveAG.html">eqtk.solveAG</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Case studies</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EQTK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://github.com/justinbois/eqtk">EQTK repo on GitHub</a></li>
+
+    
+  <li class="wy-breadcrumbs-aside">
+    
+        
+        
+            <a href="../../../_sources/user_guide/generated/lowlevel/eqtk.solveNK.rst.txt" rel="nofollow"> View page source</a>
+        
+      
+    
+  </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="eqtk-solvenk">
+<h1>eqtk.solveNK<a class="headerlink" href="#eqtk-solvenk" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="eqtk.solveNK">
+<code class="sig-prename descclassname">eqtk.</code><code class="sig-name descname">solveNK</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">logK</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">tol_zero</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_iters</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">delta_bar</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">0.125</span></em>, <em class="sig-param"><span class="n">min_delta</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_trials</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">perturb_scale</span><span class="o">=</span><span class="default_value">100.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#eqtk.solveNK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve for equilibrium concentrations of all species in a dilute
+solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x0</strong> (<em>Contiguous Numpy array in C order</em><em>, </em><em>shape</em><em> (</em><em>n_points</em><em>, </em><em>n_compounds</em><em>)</em>) – Array containing the total “initial” dimensionless concentration
+of all compounds in solution.</p></li>
+<li><p><strong>N</strong> (<em>Contiguous Numpy array in C order</em><em>, </em><em>shape</em><em> (</em><em>n_reactions</em><em>, </em><em>n_compounds</em><em>)</em>) – N[r, j] = the stoichiometric coefficient of compound j in
+chemical reaction r.</p></li>
+<li><p><strong>logK</strong> (<em>Contiguous Numpy array in C order</em><em>, </em><em>shape</em><em> (</em><em>n_reactions</em><em>,</em><em>)</em>) – logK[r] is the natural logarithm of the dimensionless
+equilibrium constant for reaction <cite>r</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>tol</strong> (<em>float, default 1e-7</em>) – Tolerance for convergence. The absolute tolerance for a given
+initial concentration c0 (a one-dimensional array) for the
+conservation conditions are tol * np.dot(A, c0) except when an
+entry in np.dot(A, c0) is zero. If that is the case for entry i,
+then the absolute tolerance is tol * np.max(A[i] * c0). If all
+entries in A[i] * c0 are zero, which only happens with c0 = 0,
+the absolute tolerance is <cite>tol_zero</cite>.</p></li>
+<li><p><strong>tol_zero</strong> (<em>float, default 1e-12</em>) – Absolute tolerance for convergence when the initial
+concentrations are all zero. This cannot really be set a priori;
+it depends on the scale of the dimensionless concentrations. By
+default, assume an absolute tolerance consistent with <cite>tol</cite> and
+millimolar mole fractions.</p></li>
+<li><p><strong>max_iters</strong> (<em>int, default 1000</em>) – Maximum number of iterations allowed in trust region method.</p></li>
+<li><p><strong>delta_bar</strong> (<em>float, default 1000.0</em>) – Maximum step size allowed in the trust region method.</p></li>
+<li><p><strong>eta</strong> (<em>float, default 0.125</em>) – Value for eta in the trust region method. <cite>eta</cite> must satisfy
+<cite>0 &lt; eta &lt; 0.25</cite>.</p></li>
+<li><p><strong>min_delta</strong> (<em>float, default 1e-12</em>) – Minimal allowed radius of the trust region. When the trust
+region radius gets below <cite>min_delta</cite>, the trust region
+iterations stop, and a final set of Newton steps is attempted.</p></li>
+<li><p><strong>max_trials</strong> (<em>int, default 100</em>) – In the event that an attempt to solve does not converge, the
+solver tries again with different initial guesses.
+This continues until <cite>max_trials</cite> failures.</p></li>
+<li><p><strong>perturb_scale</strong> (<em>float, default 100.0</em>) – Multiplier on random perturbations to the initial guesses
+as new ones are generated.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>logx</strong> – <cite>logx[i, j]</cite> = natural log of the dimensionless equilibrium
+concentration of compound <cite>j</cite> for calculation <cite>i</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Numpy array, shape (n_points, n_compounds)</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><cite>N</cite> must have full row rank, i.e., all rows must be linearly
+independent.</p>
+<p>All values in <cite>x0</cite> must be non-negative and finite.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eqtk.solveNG.html" class="btn btn-neutral float-right" title="eqtk.solveNG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../parsers/eqtk.eqcheck.html" class="btn btn-neutral float-left" title="eqtk.eqcheck" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> <jinja2.runtime.BlockReference object at 0x629bffe90> 
+
+<p>© 2020 Justin Bois.</p>
+
+<p>This document was prepared at <a rel="caltech" href="http://www.caltech.edu">Caltech</a> with financial support from the <a rel="rosen" href="http://rosen.caltech.edu">Donna and Benjamin M. Rosen Bioengineering Center</a>.</p>
+
+<br />
+
+<p>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+
+ 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-166791717-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+    
+
+  <style>
+         .wy-nav-content { max-width: none; }
+  </style>
+
+
+
+</body>
+</html>
