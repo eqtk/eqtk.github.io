@@ -124,7 +124,7 @@
 <p class="caption"><span class="caption-text">Case studies</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../case_studies/ligand_receptor.html">Promiscuous ligand-receptor binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../case_studies/hcr.html">Hyrbidization chain reaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/hcr.html">Hybridization chain reaction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../case_studies/competition_anisotropy.html">Competition anisotropy</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Credits and citation</span></p>
@@ -439,7 +439,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The names of the indices for <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a Series and the columns for <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a DataFrame are the names of the chemical species, <em>not</em>, e.g., <code class="docutils literal notranslate"><span class="pre">'[A]__0</span> <span class="pre">(mM)'</span></code>. While such input may be convenient, as it allows for specification of units and matching outputs, this is not allowed. The user should explicitly supply the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument and ensure that <em>all</em> units of concentrations and equilibrium constants are consistent with those concentration units. It the user could specify units within the <code class="docutils literal notranslate"><span class="pre">c0</span></code> Series or DataFrame, the equilibrium constants units could be ambiguous, which is why the concentration units may only be specified with the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument.</p>
+<p>The names of the indices for <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a Series and the columns for <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a DataFrame are the names of the chemical species, <em>not</em>, e.g., <code class="docutils literal notranslate"><span class="pre">'[A]__0</span> <span class="pre">(mM)'</span></code>. While such input may be convenient, as it allows for specification of units and matching outputs, this is not allowed. The user should explicitly supply the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument and ensure that <em>all</em> units of concentrations and equilibrium constants are consistent with those concentration units. If the user could specify units within the <code class="docutils literal notranslate"><span class="pre">c0</span></code> Series or DataFrame, the equilibrium constants units could be ambiguous, which is why the concentration units may only be specified with the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument.</p>
 </div>
 <p>When we call <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, we do not include the argument <code class="docutils literal notranslate"><span class="pre">K</span></code> because the equilibrium constants are already included in the inputted data frame. Executing</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N_df</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
@@ -668,7 +668,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x62a58af50> 
+  </div> <jinja2.runtime.BlockReference object at 0x61f8fe610> 
 
 <p>© 2020 EQTK Developers.</p>
 
