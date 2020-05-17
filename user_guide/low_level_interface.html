@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>EQTK low level interfaces &mdash; EQTK 0.1.0 documentation</title>
+  <title>Low-level interfaces &mdash; EQTK 0.1.0 documentation</title>
   
 
   
@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="high_level/index.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parsers_and_utilities/index.html">Parsers and utilities</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">EQTK low level interfaces</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Low-level interfaces</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example-problem">Example problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#solve-with-n-and-k-specified">Solve with N and K specified</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#solve-with-n-and-g-specified">Solve with N and G specified</a></li>
@@ -205,8 +205,8 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="eqtk-low-level-interfaces">
-<span id="low-level-interface"></span><h1>EQTK low level interfaces<a class="headerlink" href="#eqtk-low-level-interfaces" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="low-level-interfaces">
+<span id="low-level-interface"></span><h1>Low-level interfaces<a class="headerlink" href="#low-level-interfaces" title="Permalink to this headline">¶</a></h1>
 <p>EQTK offers low-level interfaces for solving coupled equilibria. Almost all users should use the high-level interfaces, which almost always means using <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The high-level functions allow different formats for input and output and handles all necessary parsing before executing the lower-level functions. The low-level functions are just-in-time compiled (JITted), and therefore are strict in the data types they expect as input and offer as output. The low-level function are useful for users who wish to incorporate equilibrium solving in a larger, possibly also JITted , pipeline.</p>
 <p>Importantly, all low-level functions require inputs that are contiguous Numpy arrays in C order with a float data type (see the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/internals.html">Numpy docs</a>). The first argument for each function is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, the <em>dimensionless</em> initial concentration of all species. It is a 2D array, where each row corresponds to a set of initial concentrations for which a calculation is to be done. For a single set of initial concentrations, it still must be a 2D array, in that case with only one row.</p>
 <p>The details about the remaining two arguments for the low-level functions are given in their individual descriptions, below. It is important to note that all concentrations, equilibrium constants, and free energies must be dimensionless. The return value of all low-level functions is the <em>natural logarithm</em> of the dimensionless equilibrium concentrations, returned as two-dimensional Numpy arrays the same shape as <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p>
@@ -247,7 +247,7 @@
 \end{pmatrix}.\end{split}\]</div>
 <p>To have them available, we will create them a Numpy arrays. The arrays are <em>not</em> the format the low-level interface functions require, but we can use <cite>eqtk.parse_input()</cite> to convert them to the appropriate format.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
-                  <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
@@ -277,7 +277,7 @@
 </div>
 <p>Alternatively, we could create them by hand, ensuring the correct format.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
-                  <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
@@ -292,13 +292,29 @@
 </pre></div>
 </div>
 <p>Finally, we will need values of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> for some of the calculations. To keep the results consistent, we will calculate them now.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">G_A</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">G_B</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">G_C</span> <span class="o">=</span> <span class="o">-</span><span class="n">logK</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">G_AB</span> <span class="o">=</span> <span class="n">logK</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">G_BB</span> <span class="o">=</span> <span class="n">logK</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">G_BC</span> <span class="o">=</span> <span class="n">logK</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">G_C</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">G_A</span><span class="p">,</span> <span class="n">G_B</span><span class="p">,</span> <span class="n">G_C</span><span class="p">,</span> <span class="n">G_AB</span><span class="p">,</span> <span class="n">G_BB</span><span class="p">,</span> <span class="n">G_BC</span><span class="p">])</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="solve-with-n-and-k-specified">
 <h2>Solve with N and K specified<a class="headerlink" href="#solve-with-n-and-k-specified" title="Permalink to this headline">¶</a></h2>
 <p>For a problem where the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the equilibrium constants <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> are specified, use eqtk.solveNK()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array of the <em>natural logarithm</em> of the equilibrium constants with a float data type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solveNK</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">logK</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>The result is the natural logarithm of the dimensionless concentrations,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">12.76103925</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.36384703</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.45418643</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.59295256</span><span class="p">,</span>
-    <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
+        <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p>It is important to note that restrictions on <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">logK</span></code> hold. All entries must be finite, and <code class="docutils literal notranslate"><span class="pre">N</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
@@ -306,9 +322,12 @@
 <div class="section" id="solve-with-n-and-g-specified">
 <h2>Solve with N and G specified<a class="headerlink" href="#solve-with-n-and-g-specified" title="Permalink to this headline">¶</a></h2>
 <p>For a problem where the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the free energies of the chemical species, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, are specified, use eqtk.solveNG()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array free energies with a float data type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solveNG</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>The result is the natural logarithm of the dimensionless concentrations,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">12.76103925</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.36384703</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.45418643</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.59295256</span><span class="p">,</span>
-    <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
+        <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p>Again, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> are subject to restrictions. All entries must be finite, and <code class="docutils literal notranslate"><span class="pre">N</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
@@ -316,9 +335,12 @@
 <div class="section" id="solve-with-a-and-g-specified">
 <h2>Solve with A and G specified<a class="headerlink" href="#solve-with-a-and-g-specified" title="Permalink to this headline">¶</a></h2>
 <p>For a problem where the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and the free energies of the chemical species, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, are specified, use eqtk.solveAG()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the conservation matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array free energies with a float data type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solveAG</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>The result is the natural logarithm of the dimensionless concentrations,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">12.76103925</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.36384703</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.45418643</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.59295256</span><span class="p">,</span>
-    <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
+        <span class="o">-</span><span class="mf">13.50261316</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.29036747</span><span class="p">]])</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> are subject to restrictions. All entries must be nonnegative and finite, and <code class="docutils literal notranslate"><span class="pre">A</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
@@ -347,7 +369,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x6209eb710> 
+  </div> <jinja2.runtime.BlockReference object at 0x61eef6d90> 
 
 <p>© 2020 EQTK Developers.</p>
 
