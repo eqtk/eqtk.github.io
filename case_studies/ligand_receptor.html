@@ -28,7 +28,7 @@
         <script src="../_static/togglebutton.js"></script>
         <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -427,7 +427,7 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Promiscuous-ligand-receptor-binding">
 <h1>Promiscuous ligand-receptor binding<a class="headerlink" href="#Promiscuous-ligand-receptor-binding" title="Permalink to this headline">¶</a></h1>
-<p>In this case study, we demonstrate how to use EQTK and be used to efficiently investigate promiscuous ligand-receptor binding. We use the term “promiscuous” because more than one ligand may bind a given receptor. Antebi, et al. (<a class="reference external" href="http://dx.doi.org/10.1016/j.cell.2017.08.015">Cell, 2017</a>) studied this system in their paper on combinatorial signaling in the <a class="reference external" href="https://en.wikipedia.org/wiki/Bone_morphogenetic_protein">bone morphogenetic protein signaling pathway</a>.</p>
+<p>In this case study, we demonstrate how to use EQTK and be used to efficiently investigate promiscuous ligand-receptor binding. We use the term “promiscuous” because more than one ligand may bind a given receptor. Antebi, et al. (<a class="reference external" href="http://dx.doi.org/10.1016/j.cell.2017.08.015">Cell, 2017</a>) studied this system in their paper on combinatorial signaling in the <a class="reference external" href="https://en.wikipedia.org/wiki/Bone_morphogenetic_protein">bone morphogenetic protein signaling pathway</a>.</p>
 <p>We will specifically study what Antebi and coworkers refer to as the (2,2,2) system, in which each of two ligands may sequentially bind to one of two type A receptors and one of two type B receptors.</p>
 <p>To start the analysis, we import Numpy and EQTK, and additionally <a class="reference external" href="http://holoviews.org/">HoloViews</a> for plotting, also setting some nice defaults for the plots. We will also import <a class="reference external" href="https://numba.pydata.org">Numba</a>, which we will use to just-in-time compile our code.</p>
 <div class="nbinput docutils container">
@@ -2366,8 +2366,8 @@ S = \sum_{ijk} \epsilon_{ijk}\,[\mathrm{T}_{ijk}].
 <p>Antebi et al. defined two summary parameters that can be computed from the above heat map. They considered only the regions of high ligand concentrations; that is the top row and rightmost column of the above heat map. They defined the following quantities:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 87%" />
+<col style="width: 11%" />
+<col style="width: 89%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>variable</p></th>
@@ -2692,7 +2692,7 @@ array([[0.00000000e+00, 1.00000000e+03],
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x61e3872d0> 
+  </div> <jinja2.runtime.BlockReference object at 0x7faa4669b950> 
 
 <p>© 2020 EQTK Developers.</p>
 

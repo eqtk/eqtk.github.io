@@ -28,7 +28,7 @@
         <script src="../_static/togglebutton.js"></script>
         <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -295,7 +295,7 @@ produces energy through its reactions.</p>
 </div>
 <div class="section" id="conservation-laws">
 <h2>Conservation laws<a class="headerlink" href="#conservation-laws" title="Permalink to this headline">¶</a></h2>
-<p>If <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> is square (<span class="math notranslate nohighlight">\(n = r\)</span>), then the equilibrium concentrations are immediately attained by solving the linear system</p>
+<p>If <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> is square (<span class="math notranslate nohighlight">\(n = r\)</span>), then the equilibrium concentrations are immediately obtained by solving the linear system</p>
 <div class="math notranslate nohighlight">
 \[\ln \mathbf{K} = \mathsf{N} \cdot \ln \mathbf{c}.\]</div>
 <p>This is almost never the case; in most applications there are more chemical species than there are reactions, and <span class="math notranslate nohighlight">\(n &gt; r\)</span>. The equilibrium expression is then underdetermined, and we need <span class="math notranslate nohighlight">\(n - r\)</span> additional equations to solve for the concentrations.</p>
@@ -322,7 +322,7 @@ produces energy through its reactions.</p>
 <li><p>The <span class="math notranslate nohighlight">\(r\)</span> equilibrium constants, <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> (positive and finite).</p></li>
 <li><p>The <span class="math notranslate nohighlight">\(n\)</span> initial concentrations, <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> (nonnegative and finite).</p></li>
 </ul>
-<p>It is not necessary to specify the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>, as it can be calculated from the null space of the stoichiometric matric <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>.</p>
+<p>It is not necessary to specify the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>, as it can be calculated from the null space of the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>.</p>
 </div>
 <div class="section" id="elemental-conservation-matrices">
 <h2>Elemental conservation matrices<a class="headerlink" href="#elemental-conservation-matrices" title="Permalink to this headline">¶</a></h2>
@@ -456,7 +456,7 @@ reference free energy.</p>
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x61e2b7b90> 
+  </div> <jinja2.runtime.BlockReference object at 0x7faa47999c50> 
 
 <p>© 2020 EQTK Developers.</p>
 
