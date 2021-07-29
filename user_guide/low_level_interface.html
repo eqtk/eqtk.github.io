@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Low-level interfaces &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="API Reference" href="api.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -122,6 +127,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -141,6 +147,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -205,12 +213,12 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="low-level-interfaces">
+<section id="low-level-interfaces">
 <span id="low-level-interface"></span><h1>Low-level interfaces<a class="headerlink" href="#low-level-interfaces" title="Permalink to this headline">¶</a></h1>
 <p>EQTK offers low-level interfaces for solving coupled equilibria. Almost all users should use the high-level interfaces, which almost always means using <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The high-level functions allow different formats for input and output and handles all necessary parsing before executing the lower-level functions. The low-level functions are just-in-time compiled (JITted), and therefore are strict in the data types they expect as input and offer as output. The low-level function are useful for users who wish to incorporate equilibrium solving in a larger, possibly also JITted , pipeline.</p>
 <p>Importantly, all low-level functions require inputs that are contiguous Numpy arrays in C order with a float data type (see the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/internals.html">Numpy docs</a>). The first argument for each function is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, the <em>dimensionless</em> initial concentration of all species. It is a 2D array, where each row corresponds to a set of initial concentrations for which a calculation is to be done. For a single set of initial concentrations, it still must be a 2D array, in that case with only one row.</p>
 <p>The details about the remaining two arguments for the low-level functions are given in their individual descriptions, below. It is important to note that all concentrations, equilibrium constants, and free energies must be dimensionless. The return value of all low-level functions is the <em>natural logarithm</em> of the dimensionless equilibrium concentrations, returned as two-dimensional Numpy arrays the same shape as <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p>
-<div class="section" id="example-problem">
+<section id="example-problem">
 <h2>Example problem<a class="headerlink" href="#example-problem" title="Permalink to this headline">¶</a></h2>
 <p>To demonstrate the use of the low-level interface, we will use the same example problem we used in the documentation of the <a class="reference internal" href="high_level/eqtk_solve.html#eqtk-solve"><span class="std std-ref">high-level interface</span></a>. The chemical reactions and equilibrium constants are</p>
 <div class="math notranslate nohighlight">
@@ -305,8 +313,8 @@
 <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">G_A</span><span class="p">,</span> <span class="n">G_B</span><span class="p">,</span> <span class="n">G_C</span><span class="p">,</span> <span class="n">G_AB</span><span class="p">,</span> <span class="n">G_BB</span><span class="p">,</span> <span class="n">G_BC</span><span class="p">])</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="solve-with-n-and-k-specified">
+</section>
+<section id="solve-with-n-and-k-specified">
 <h2>Solve with N and K specified<a class="headerlink" href="#solve-with-n-and-k-specified" title="Permalink to this headline">¶</a></h2>
 <p>For a problem where the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the equilibrium constants <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> are specified, use eqtk.solveNK()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array of the <em>natural logarithm</em> of the equilibrium constants with a float data type.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solveNK</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">logK</span><span class="p">)</span>
@@ -318,8 +326,8 @@
 </pre></div>
 </div>
 <p>It is important to note that restrictions on <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">logK</span></code> hold. All entries must be finite, and <code class="docutils literal notranslate"><span class="pre">N</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
-</div>
-<div class="section" id="solve-with-n-and-g-specified">
+</section>
+<section id="solve-with-n-and-g-specified">
 <h2>Solve with N and G specified<a class="headerlink" href="#solve-with-n-and-g-specified" title="Permalink to this headline">¶</a></h2>
 <p>For a problem where the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the free energies of the chemical species, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, are specified, use eqtk.solveNG()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array free energies with a float data type.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solveNG</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
@@ -331,8 +339,8 @@
 </pre></div>
 </div>
 <p>Again, <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> are subject to restrictions. All entries must be finite, and <code class="docutils literal notranslate"><span class="pre">N</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
-</div>
-<div class="section" id="solve-with-a-and-g-specified">
+</section>
+<section id="solve-with-a-and-g-specified">
 <h2>Solve with A and G specified<a class="headerlink" href="#solve-with-a-and-g-specified" title="Permalink to this headline">¶</a></h2>
 <p>For a problem where the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and the free energies of the chemical species, <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, are specified, use eqtk.solveAG()`. The first argument is <code class="docutils literal notranslate"><span class="pre">x0</span></code>, described above. The second argument is the conservation matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>, as a 2D Numpy array of <em>floats</em>. The third argument is a 1D Numpy array free energies with a float data type.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solveAG</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
@@ -344,24 +352,18 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">G</span></code> are subject to restrictions. All entries must be nonnegative and finite, and <code class="docutils literal notranslate"><span class="pre">A</span></code> must have full row rank. In the low-level interface, <strong>these are not checked.</strong></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="parsers_and_utilities/eqtk_constants.html" class="btn btn-neutral float-left" title="The Boltzmann constant" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="parsers_and_utilities/eqtk_constants.html" class="btn btn-neutral float-left" title="The Boltzmann constant" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -369,7 +371,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b98c2690> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fd0f5700> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -382,7 +384,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -390,7 +391,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -409,6 +409,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

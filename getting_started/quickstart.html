@@ -1,45 +1,47 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Quick start &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Core concepts" href="../user_guide/core_concepts.html" />
@@ -80,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -123,6 +126,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -142,6 +146,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -206,10 +212,10 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="quick-start">
+<section id="quick-start">
 <span id="quickstart"></span><h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
 <p>The first step to getting started is to <a class="reference internal" href="eqtk_installation.html#installation"><span class="std std-ref">install EQTK</span></a>. After that is done, you can start solving equilibrium problems.</p>
-<div class="section" id="problem-specification">
+<section id="problem-specification">
 <h2>Problem specification<a class="headerlink" href="#problem-specification" title="Permalink to this headline">¶</a></h2>
 <p>EQTK solves the following problem:</p>
 <blockquote>
@@ -220,8 +226,8 @@
 <p>AC ⇌ A + C ; K = 0.003 mM</p>
 <p>With the chemical reactions and equilibrium constants defined, we have to further specify what is placed in solution. Imagine we add A, B, and C into the solution such that the initial concentrations of the respective species are 1 mM, 0.5 mM, and 0.25 mM,
 and we initially have no AB or AC complexes. The problem is now fully specified.</p>
-</div>
-<div class="section" id="eqtk-solve">
+</section>
+<section id="eqtk-solve">
 <h2>eqtk.solve()<a class="headerlink" href="#eqtk-solve" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> function is the central function of EQTK. In the simplest form, it takes three arguments.</p>
 <ul class="simple">
@@ -266,8 +272,8 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.27824281</span><span class="p">,</span> <span class="mf">0.02557607</span><span class="p">,</span> <span class="mf">0.00266673</span><span class="p">,</span> <span class="mf">0.47442393</span><span class="p">,</span> <span class="mf">0.24733327</span><span class="p">])</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="computing-a-titration-curve">
+</section>
+<section id="computing-a-titration-curve">
 <h2>Computing a titration curve<a class="headerlink" href="#computing-a-titration-curve" title="Permalink to this headline">¶</a></h2>
 <p>Alternatively, <code class="docutils literal notranslate"><span class="pre">c0</span></code> may be inputted as a two-dimensional array, where each row corresponds to a different initial set of concentrations. For example, if we wanted to compute a titration curve for the fraction of the receptors B and C that are bound as we increase the amount of ligand A present in the solution, we can do the following.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -296,8 +302,8 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
 </div>
 <p>Here is a plot of the result.</p>
 
-<script src="bokeh-plot-cfa07daed59243cd8734eb326ebe24e9-external-getting_started-quickstart.js" id="2d315468-578f-4151-b3d1-88b766b8c9a9"></script></div>
-<div class="section" id="rich-input-output-formats">
+<script src="bokeh-plot-f01986c236b7416cae7e497a12295ff9-external-getting_started-quickstart.js" id="5fdb7e6e-b68a-4d42-9f79-c59d1451647c"></script></section>
+<section id="rich-input-output-formats">
 <h2>Rich input/output formats<a class="headerlink" href="#rich-input-output-formats" title="Permalink to this headline">¶</a></h2>
 <p>Instead of using lists, tuples, and Numpy arrays for specifying inputs, and thereafter relying on integer-based indexing to retrieve results, the stoichiometry, equilibrium constants, and initial concentrations may be specified as <a class="reference external" href="http://pandas.pydata.org">Pandas</a> series and data frames. This allows for chemical species to be referenced by name. Conveniently, EQTK includes a parser that converts chemical reactions written a strings to data frames using syntax similar to <a class="reference external" href="http://cantera.org">Cantera</a>. We can alternatively specify the problem as below, this time also considering dimerization of the ligand A,</p>
 <p>AA ⇌ 2A ; K = 0.02 mM.</p>
@@ -343,8 +349,8 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
 </pre></div>
 </div>
 <p>The result includes the initial concentrations of each species, with the species names appended with <code class="docutils literal notranslate"><span class="pre">__0</span></code>.</p>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p>The <span class="xref std std-ref">user guide</span> has more details about</p>
 <ul class="simple">
@@ -353,24 +359,18 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
 <li><p>Lower level interfaces to the equilibrium solving algorithm.</p></li>
 </ul>
 <p>Finally, the <span class="xref std std-ref">case studies</span> section of this guide provides examples of using EQTK to study chemical systems.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../user_guide/core_concepts.html" class="btn btn-neutral float-right" title="Core concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk_installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../user_guide/core_concepts.html" class="btn btn-neutral float-right" title="Core concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk_installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -378,7 +378,7 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b89773d0> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fcd02a90> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -391,7 +391,6 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
  
 
 </footer>
-
         </div>
       </div>
 
@@ -399,7 +398,6 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -418,6 +416,7 @@ and we initially have no AB or AC complexes. The problem is now fully specified.
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

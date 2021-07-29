@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Check satisfaction of equilibrium conditions &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="The Boltzmann constant" href="eqtk_constants.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -128,6 +133,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,6 +153,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -211,7 +219,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="check-satisfaction-of-equilibrium-conditions">
+<section id="check-satisfaction-of-equilibrium-conditions">
 <span id="eqtk-checks"></span><h1>Check satisfaction of equilibrium conditions<a class="headerlink" href="#check-satisfaction-of-equilibrium-conditions" title="Permalink to this headline">¶</a></h1>
 <p>If EQTK’s solve algorithm converges, equilibrium and conservation laws are guaranteed to be satisfied (see <span class="xref std std-ref">algorithmic details</span>). Nonetheless, it is sometimes useful to check if equilibrium conditions are met. To understand the discussion below, it may help to refresh yourself of the <a class="reference internal" href="../core_concepts.html#core-concepts"><span class="std std-ref">core concepts</span></a> behind the couple equilibrium problem.</p>
 <p>As a simple example, consider the chemical reactions</p>
@@ -219,12 +227,12 @@
 <p>AC ⇌ A + C ; <em>K</em> = <em>K₂</em></p>
 <p>The equilibrium conditions are</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;K_1 = \frac{c_\mathrm{A}\,c_\mathrm{B}}{c_\mathrm{AB}},\\
+\[\begin{split}&amp;K_1 = \frac{c_\mathrm{A}\,c_\mathrm{B}}{c_\mathrm{AB}},\\[1em]
 &amp;K_2 = \frac{c_\mathrm{A}\,c_\mathrm{C}}{c_\mathrm{AC}}.\end{split}\]</div>
 <p>Additionally, three conservation laws, corresponding to conservation of A, B, and C, must be satisfied.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;c_\mathrm{A}^0 = c_\mathrm{A} + c_\mathrm{AB} + c_\mathrm{AC},\\
-&amp;c_\mathrm{B}^0 = c_\mathrm{B} + c_\mathrm{AB},\\
+\[\begin{split}&amp;c_\mathrm{A}^0 = c_\mathrm{A} + c_\mathrm{AB} + c_\mathrm{AC},\\[1em]
+&amp;c_\mathrm{B}^0 = c_\mathrm{B} + c_\mathrm{AB},\\[1em]
 &amp;c_\mathrm{C}^0 = c_\mathrm{C} + c_\mathrm{AC}.\end{split}\]</div>
 <p>Together, these five equations define the equilibrium. We can write these conditions in terms of the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. The stoichiometric matrix corresponding to the chemical reactions is</p>
 <div class="math notranslate nohighlight">
@@ -241,11 +249,11 @@
 \end{pmatrix}.\end{split}\]</div>
 <p>If we define</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;\mathbf{c} = (c_\mathrm{A}, c_\mathrm{B}, c_\mathrm{C}, c_\mathrm{AB}, c_\mathrm{AC})^\mathsf{T},\\
+\[\begin{split}&amp;\mathbf{c} = (c_\mathrm{A}, c_\mathrm{B}, c_\mathrm{C}, c_\mathrm{AB}, c_\mathrm{AC})^\mathsf{T},\\[1em]
 &amp;\mathbf{c}^0 = (c_\mathrm{A}^0, c_\mathrm{B}^0, c_\mathrm{C}^0, c_\mathrm{AB}^0, c_\mathrm{AC}^0)^\mathsf{T},\end{split}\]</div>
 <p>the equilibrium conditions are</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}&amp;K_1 = \prod_j c_j^{N_{1j}},\\
+\[\begin{split}&amp;K_1 = \prod_j c_j^{N_{1j}},\\[1em]
 &amp;K_2 = \prod_j c_j^{N_{2j}},\end{split}\]</div>
 <p>or more generally</p>
 <div class="math notranslate nohighlight">
@@ -253,7 +261,7 @@
 <p>The condition for conservation is</p>
 <div class="math notranslate nohighlight">
 \[\mathsf{A}\cdot\mathbf{c} = \mathsf{A} \cdot \mathbf{c}^0.\]</div>
-<div class="section" id="check-of-satisfaction-of-equilibrium-and-conservation-conditions">
+<section id="check-of-satisfaction-of-equilibrium-and-conservation-conditions">
 <h2>Check of satisfaction of equilibrium and conservation conditions<a class="headerlink" href="#check-of-satisfaction-of-equilibrium-and-conservation-conditions" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">eqtk.eqcheck()</span></code> function conveniently checks to make sure equilibrium and conservation conditions are met. To check equilibrium conditions, it verifies that</p>
 <div class="math notranslate nohighlight">
@@ -295,8 +303,8 @@
 </pre></div>
 </div>
 <p>This calculation again returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-</div>
-<div class="section" id="quantitative-check-in-error-in-equilibrium-and-conservation-conditions">
+</section>
+<section id="quantitative-check-in-error-in-equilibrium-and-conservation-conditions">
 <h2>Quantitative check in error in equilibrium and conservation conditions<a class="headerlink" href="#quantitative-check-in-error-in-equilibrium-and-conservation-conditions" title="Permalink to this headline">¶</a></h2>
 <p>To get more detailed information, specifically the value of the ratio</p>
 <div class="math notranslate nohighlight">
@@ -324,24 +332,18 @@
 <span class="n">array</span><span class="p">([</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">]))</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk_constants.html" class="btn btn-neutral float-right" title="The Boltzmann constant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk_water_density.html" class="btn btn-neutral float-left" title="Compute the density of water" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk_constants.html" class="btn btn-neutral float-right" title="The Boltzmann constant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk_water_density.html" class="btn btn-neutral float-left" title="Compute the density of water" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -349,7 +351,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3d45ca510> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fd061670> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -362,7 +364,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -370,7 +371,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -389,6 +389,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

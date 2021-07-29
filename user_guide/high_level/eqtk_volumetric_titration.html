@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Volumetric titration &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Parsers and utilities" href="../parsers_and_utilities/index.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -128,6 +133,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,6 +153,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -211,18 +219,18 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="volumetric-titration">
+<section id="volumetric-titration">
 <span id="eqtk-volumetric-titration"></span><h1>Volumetric titration<a class="headerlink" href="#volumetric-titration" title="Permalink to this headline">¶</a></h1>
 <p>In a <a class="reference external" href="https://en.wikipedia.org/wiki/Titration">volumetric titration</a>, a titrant is added to an existing solution. As each drop of titrant solution is added, a readout, such as pH or fluorescence, of the concentration of the contents of the solution is measured. EQTK offers the <code class="docutils literal notranslate"><span class="pre">eqtk.volumetric_titration()</span></code> function to compute titration curves. Its API, as we will demonstrate, is the same as <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, except two additional inputs specifying the concentration of the chemical species in the titrant and the volume of titrant added are required.</p>
 <p>In what follows, we will assume that Numpy, Pandas, and EQTK have been imported respectively as <code class="docutils literal notranslate"><span class="pre">np</span></code>, <code class="docutils literal notranslate"><span class="pre">pd</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk</span></code>.</p>
-<div class="section" id="example-problem">
+<section id="example-problem">
 <h2>Example problem<a class="headerlink" href="#example-problem" title="Permalink to this headline">¶</a></h2>
 <p>To demonstrate the use of <code class="docutils literal notranslate"><span class="pre">eqtk.fixed_value_solve()</span></code>, we will consider titration of a solution of <a class="reference external" href="https://en.wikipedia.org/wiki/Oxalic_acid">oxalic acid</a> with a 1 M solution of sodium hydroxide. Oxalic acid is diprotic with the following deprotonation reactions and associated equilibrium constants.</p>
 <p>C₂O₄H₂ ⇌ C₂O₄H⁻ + H⁺ ; <em>K</em> = 0.0537 M⁻¹</p>
 <p>C₂O₄H⁻ ⇌ C₂O₄²⁻ + H⁺ ; <em>K</em> = 5.37 × 10⁻⁵ M⁻¹</p>
 <p>The initial concentration of oxalic acid is 100 mM.</p>
-</div>
-<div class="section" id="stoichiometric-matrix-and-equilibrium-constants">
+</section>
+<section id="stoichiometric-matrix-and-equilibrium-constants">
 <h2>Stoichiometric matrix and equilibrium constants<a class="headerlink" href="#stoichiometric-matrix-and-equilibrium-constants" title="Permalink to this headline">¶</a></h2>
 <p>We can conveniently specify the chemical reactions and species using EQTK’s parser for string representations. Recall that solvent is <strong>not</strong> explicitly included in the chemical reactions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rxns</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -234,8 +242,8 @@
 <span class="n">N</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">parse_rxns</span><span class="p">(</span><span class="n">rxns</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="initial-concentrations-of-solution-and-titrant">
+</section>
+<section id="initial-concentrations-of-solution-and-titrant">
 <h2>Initial concentrations of solution and titrant<a class="headerlink" href="#initial-concentrations-of-solution-and-titrant" title="Permalink to this headline">¶</a></h2>
 <p>The initial concentrations of all species, <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>, is specified in the same way as for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. For this calculation, we will begin with 0.1 M H₂D.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C₂O₄H₂&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;OH⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;H⁺&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;C₂O₄H⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;C₂O₄²⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
@@ -246,15 +254,15 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0_titrant</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C₂O₄H₂&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;OH⁻&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;H⁺&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;C₂O₄H⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;C₂O₄²⁻&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="volume-of-titrant">
+</section>
+<section id="volume-of-titrant">
 <h2>Volume of titrant<a class="headerlink" href="#volume-of-titrant" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we need to specify the volume of titrant we wish to add. This is specified as a Numpy array, where each entry is the volume of the titrant that has been added to the solution <em>as a fraction of the initial solution volume</em>. This means that the volume of added titrant is dimensionless.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vol_titrant</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="solving-for-the-titration-curve">
+</section>
+<section id="solving-for-the-titration-curve">
 <h2>Solving for the titration curve<a class="headerlink" href="#solving-for-the-titration-curve" title="Permalink to this headline">¶</a></h2>
 <p>We call <code class="docutils literal notranslate"><span class="pre">eqtk.volumetric_titration()</span></code> similarly to <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, except with the additional arguments <code class="docutils literal notranslate"><span class="pre">c0_titrant</span></code> and <code class="docutils literal notranslate"><span class="pre">vol_titrant</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">volumetric_titration</span><span class="p">(</span>
@@ -265,24 +273,18 @@
 <p>Because we supplied our inputs as data frames, the output is also a data frame. The output is as for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, except there is an additional column <code class="docutils literal notranslate"><span class="pre">'titrant</span> <span class="pre">volume</span> <span class="pre">/</span> <span class="pre">initial</span> <span class="pre">volume'</span></code>.</p>
 <p>A plot of the titration curve with pH calculated as <code class="docutils literal notranslate"><span class="pre">-np.log10(c['[H⁺]</span> <span class="pre">(M)'])</span></code> is shown below.</p>
 
-<script src="bokeh-plot-84da55ae1ffe4fb5b5e1a29993f07879-external-user_guide-high_level-eqtk_volumetric_titration.js" id="10a45581-6e4e-4a95-ab7b-ea4025371b88"></script></div>
-</div>
+<script src="bokeh-plot-341036a167a948ba8e7aff7d7427d592-external-user_guide-high_level-eqtk_volumetric_titration.js" id="8a7143ac-65c6-44a6-8ff2-0e8c629ace35"></script></section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../parsers_and_utilities/index.html" class="btn btn-neutral float-right" title="Parsers and utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk_fixed_value_solve.html" class="btn btn-neutral float-left" title="Equilibrium with some concentrations fixed" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../parsers_and_utilities/index.html" class="btn btn-neutral float-right" title="Parsers and utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk_fixed_value_solve.html" class="btn btn-neutral float-left" title="Equilibrium with some concentrations fixed" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -290,7 +292,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b8b7d510> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fd05a910> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -303,7 +305,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -311,7 +312,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -330,6 +330,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

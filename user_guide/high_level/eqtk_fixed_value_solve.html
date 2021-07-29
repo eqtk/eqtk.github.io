@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Equilibrium with some concentrations fixed &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Volumetric titration" href="eqtk_volumetric_titration.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -128,6 +133,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,6 +153,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -211,12 +219,12 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="equilibrium-with-some-concentrations-fixed">
+<section id="equilibrium-with-some-concentrations-fixed">
 <span id="eqtk-fixed-value-solve"></span><h1>Equilibrium with some concentrations fixed<a class="headerlink" href="#equilibrium-with-some-concentrations-fixed" title="Permalink to this headline">¶</a></h1>
 <p>Sometimes we may have a chemical system in which one or more species has their concentration held constant. For example, we could have a system where a chemical species is constantly fed in such that its concentration in the reaction vessel remains constant. As another example, we might have a weak acid in solution and we add a strong acid to control the pH, thereby keeping the concentration of hydrogen ions constant.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">eqtk.final_value_solve()</span></code> function allows for solving the coupled equilibrium problem when one or more of of chemical species are present in fixed amounts. Its API, as we will demonstrate, is the same as <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, except an additional input, <code class="docutils literal notranslate"><span class="pre">fixed_c</span></code>, which specifies the fixed concentration is required. However, <code class="docutils literal notranslate"><span class="pre">eqtk.final_value_solve()</span></code> only accepts input of the stoichiometric matrix and equilibrium constants; input of free energies and a conservation matrix are not yet implemented.</p>
 <p>In what follows, we will assume that Numpy, Pandas, and EQTK have been imported respectively as <code class="docutils literal notranslate"><span class="pre">np</span></code>, <code class="docutils literal notranslate"><span class="pre">pd</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk</span></code>.</p>
-<div class="section" id="example-problem">
+<section id="example-problem">
 <h2>Example problem<a class="headerlink" href="#example-problem" title="Permalink to this headline">¶</a></h2>
 <p>To demonstrate the use of <code class="docutils literal notranslate"><span class="pre">eqtk.fixed_value_solve()</span></code>, we will consider the protonation state of <a class="reference external" href="https://en.wikipedia.org/wiki/Aspartic_acid">aspartic acid</a>. The reactions describing deprotonation are</p>
 <p>H₃D⁺ ⇌ H₂D + H⁺</p>
@@ -226,8 +234,8 @@
 <p>H₂O ⇌ OH⁻ + H⁺,</p>
 <p>which has an equilibrium constant of 10⁻¹⁴ M².</p>
 <p>Our goal is to compute the relative abundances of the four protonation states of aspartic acid as a function of pH. Thus, for each pH value, we want to fix [H⁺] = 10⁻ᵖᴴ and compute the equilibrium concentrations of the other species.</p>
-</div>
-<div class="section" id="the-chemical-reactions">
+</section>
+<section id="the-chemical-reactions">
 <h2>The chemical reactions<a class="headerlink" href="#the-chemical-reactions" title="Permalink to this headline">¶</a></h2>
 <p>We can conveniently specify the chemical reactions and species using EQTK’s parser for string representations. Recall that solvent is <strong>not</strong> explicitly included in the chemical reactions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rxns</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -240,10 +248,10 @@
 <span class="n">N</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">parse_rxns</span><span class="p">(</span><span class="n">rxns</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="initial-and-fixed-concentrations">
+</section>
+<section id="initial-and-fixed-concentrations">
 <h2>Initial and fixed concentrations<a class="headerlink" href="#initial-and-fixed-concentrations" title="Permalink to this headline">¶</a></h2>
-<p>The initial concentrations of all species, $mathbf{c}^0$, is specified the same as for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. For this calculation, we will begin with 1 mM H₂D.</p>
+<p>The initial concentrations of all species, <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>, is specified the same as for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. For this calculation, we will begin with 1 mM H₂D.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;H⁺&quot;</span><span class="p">:</span>   <span class="mi">0</span><span class="p">,</span>
     <span class="s2">&quot;OH⁻&quot;</span><span class="p">:</span>  <span class="mi">0</span><span class="p">,</span>
@@ -271,8 +279,8 @@
 4  0.041543 -1.0  -1.0 -1.0 -1.0 -1.0
 </pre></div>
 </div>
-</div>
-<div class="section" id="solving-for-the-relative-abundance">
+</section>
+<section id="solving-for-the-relative-abundance">
 <h2>Solving for the relative abundance<a class="headerlink" href="#solving-for-the-relative-abundance" title="Permalink to this headline">¶</a></h2>
 <p>We call <code class="docutils literal notranslate"><span class="pre">eqtk.fixed_value_solve()</span></code> similarly to <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, except with the additional argument <code class="docutils literal notranslate"><span class="pre">fixed_c</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">fixed_value_solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">fixed_c</span><span class="o">=</span><span class="n">fixed_c</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
@@ -281,8 +289,8 @@
 <p>Because we supplied our inputs as data frames, the output is also a data frame. The output is as for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, except there are additional columns with names like <code class="docutils literal notranslate"><span class="pre">'[H⁺]__fixed</span> <span class="pre">(M)'</span></code>, denoting concentrations that were fixed in the calculation.</p>
 <p>A plot of the relative abundances computed from <code class="docutils literal notranslate"><span class="pre">c</span></code> is shown below.</p>
 
-<script src="bokeh-plot-c23c646cb7264de58291c04a3925f0a0-external-user_guide-high_level-eqtk_fixed_value_solve.js" id="5b9c105b-e6a2-4471-81df-216cccc4afff"></script></div>
-<div class="section" id="over-constraining-a-problem">
+<script src="bokeh-plot-8b122621f73044f799b3bf1a967ee72c-external-user_guide-high_level-eqtk_fixed_value_solve.js" id="50b48ef2-e980-4e92-9726-d95a3ef7277a"></script></section>
+<section id="over-constraining-a-problem">
 <h2>Over-constraining a problem<a class="headerlink" href="#over-constraining-a-problem" title="Permalink to this headline">¶</a></h2>
 <p>In a given calculation, only some species may have fixed concentration, lest the coupled equilibrium problem be over-constrained. EQTK will check for this and raise an exception if the problem becomes over-constrained. For example, we cannot fix both the H⁺ and OH⁻ concentrations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fixed_c</span> <span class="o">=</span> <span class="p">{</span>
@@ -298,24 +306,18 @@
 </pre></div>
 </div>
 <p>This results in a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> saying that the stoichiometric matrix is rank deficient.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk_volumetric_titration.html" class="btn btn-neutral float-right" title="Volumetric titration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk_solve.html" class="btn btn-neutral float-left" title="Generic equilibrium solver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk_volumetric_titration.html" class="btn btn-neutral float-right" title="Volumetric titration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk_solve.html" class="btn btn-neutral float-left" title="Generic equilibrium solver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -323,7 +325,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3d500d810> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fce39ac0> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -336,7 +338,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -344,7 +345,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -363,6 +363,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

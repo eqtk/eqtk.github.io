@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Generic equilibrium solver &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Equilibrium with some concentrations fixed" href="eqtk_fixed_value_solve.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -136,6 +141,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -155,6 +161,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -219,11 +227,11 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="generic-equilibrium-solver">
+<section id="generic-equilibrium-solver">
 <span id="eqtk-solve"></span><h1>Generic equilibrium solver<a class="headerlink" href="#generic-equilibrium-solver" title="Permalink to this headline">¶</a></h1>
 <p>EQTK’s main high level interface to solving the coupled equilibrium problem is <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. It requires as input initial concentrations <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span> and either a stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> or a conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. Depending on the data types of these inputs, other inputs, such as equilibrium constants and free energies, may be required.</p>
 <p>In what follows, we will assume that Numpy, Pandas, and EQTK have been imported respectively as <code class="docutils literal notranslate"><span class="pre">np</span></code>, <code class="docutils literal notranslate"><span class="pre">pd</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk</span></code>.</p>
-<div class="section" id="example-problem">
+<section id="example-problem">
 <h2>Example problem<a class="headerlink" href="#example-problem" title="Permalink to this headline">¶</a></h2>
 <p>As we demonstrate the usage of <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, it is useful to have an example in mind. We will use the example from the <a class="reference internal" href="../core_concepts.html#core-concepts"><span class="std std-ref">core concepts</span></a> part of the user guide (which you should read if you have not already). The chemical reactions and associated equilibrium constants for that example are</p>
 <div class="math notranslate nohighlight">
@@ -261,11 +269,11 @@
   0 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 1
 \end{pmatrix}.\end{split}\]</div>
 <p>The free energies, in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span> are related to the equilibrium constants. We will compute them from the equilibrium constants later when we need them.</p>
-</div>
-<div class="section" id="stoichiometric-matrix-n-given">
+</section>
+<section id="stoichiometric-matrix-n-given">
 <h2>Stoichiometric matrix N given<a class="headerlink" href="#stoichiometric-matrix-n-given" title="Permalink to this headline">¶</a></h2>
 <p>If an <span class="math notranslate nohighlight">\(r\times n\)</span> stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> is given, you may either specify <span class="math notranslate nohighlight">\(r\)</span> equilibrium constants or <span class="math notranslate nohighlight">\(n\)</span> free energies, in addition to <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>, which is always required.</p>
-<div class="section" id="n-given-as-a-numpy-array">
+<section id="n-given-as-a-numpy-array">
 <h3>N given as a Numpy array<a class="headerlink" href="#n-given-as-a-numpy-array" title="Permalink to this headline">¶</a></h3>
 <p>The stoichiometric matrix <cite>mathsf{N}</cite> may be given as a Numpy array. In this case, the ordering of the columns maps to the respective species. In our definition of <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>, we implicitly chose the index-species mapping shown below.</p>
 <table class="docutils align-default">
@@ -310,7 +318,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="section" id="equilibrium-constants-as-numpy-arrays">
+<section id="equilibrium-constants-as-numpy-arrays">
 <h4>Equilibrium constants as Numpy arrays<a class="headerlink" href="#equilibrium-constants-as-numpy-arrays" title="Permalink to this headline">¶</a></h4>
 <p>We must also specify the equilibrium constants as a Numpy array if the stoichiometric matrix is also specified as a Numpy array.</p>
 <div class="admonition warning">
@@ -320,7 +328,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Entry <code class="docutils literal notranslate"><span class="pre">K[i]</span></code> corresponds to the chemical reaction given by the <code class="docutils literal notranslate"><span class="pre">i``th</span> <span class="pre">row</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">stoichiometric</span> <span class="pre">matrix</span> <span class="pre">``N</span></code>.</p>
+<p>Entry <code class="docutils literal notranslate"><span class="pre">K[i]</span></code> corresponds to the chemical reaction given by the <a href="#id1"><span class="problematic" id="id2">*</span></a>i*th row of the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p>
 <p>We can now solve for the equilibrium concentrations</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
 </pre></div>
@@ -329,8 +337,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">])</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="free-energies-as-numpy-arrays">
+</section>
+<section id="free-energies-as-numpy-arrays">
 <h4>Free energies as Numpy arrays<a class="headerlink" href="#free-energies-as-numpy-arrays" title="Permalink to this headline">¶</a></h4>
 <p>Alternatively, we can specify free energies of each species instead of the equilibrium constants for the chemical reactions. In practice, you would enter these directly, but to keep the calculations consistent, we will calculate the free energies, using one of EQTK’s private functions to compute the density of water to make the conversion. The resulting free energies are dimensionless (in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">water_density</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">water_density</span><span class="p">(</span><span class="mf">293.15</span><span class="p">,</span> <span class="s1">&#39;mM&#39;</span><span class="p">)</span>
@@ -354,8 +362,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">])</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="initial-concentrations-as-a-2d-numpy-array">
+</section>
+<section id="initial-concentrations-as-a-2d-numpy-array">
 <h4>Initial concentrations as a 2D Numpy array<a class="headerlink" href="#initial-concentrations-as-a-2d-numpy-array" title="Permalink to this headline">¶</a></h4>
 <p>We may wish to compute the equilibrium concentrations for multiple initial concentrations. This is accomplished by passing in <code class="docutils literal notranslate"><span class="pre">c0</span></code> as a two-dimensional Numpy array. Each row corresponds to a different equilibrium calculation, with the columns corresponding to the chemical species. Here is an example using three different concentrations of B.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
@@ -371,8 +379,8 @@
        <span class="p">[</span><span class="mf">0.1882283</span> <span class="p">,</span> <span class="mf">0.07750359</span><span class="p">,</span> <span class="mf">0.00941142</span><span class="p">,</span> <span class="mf">0.72941844</span><span class="p">,</span> <span class="mf">0.06006806</span><span class="p">,</span> <span class="mf">0.07294184</span><span class="p">]])</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="naming-the-chemical-species">
+</section>
+<section id="naming-the-chemical-species">
 <h4>Naming the chemical species<a class="headerlink" href="#naming-the-chemical-species" title="Permalink to this headline">¶</a></h4>
 <p>If desired, you may specify names for the respective chemical species using the <code class="docutils literal notranslate"><span class="pre">names</span></code> keyword argument. This allows for richer output; the result is either a Pandas Series (for one-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code>) or DataFrame (for two-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code>). Here, we will again use the two-dimensional <code class="docutils literal notranslate"><span class="pre">c0</span></code> from the previous calculation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">]</span>
@@ -395,11 +403,11 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The units are given in parentheses next to the brackets (denoting concentration) around the species name. If the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the phase <code class="docutils literal notranslate"><span class="pre">mole</span> <span class="pre">fraction</span></code> appears in the parentheses.</p>
+<p>The units are given in parentheses next to the brackets (denoting concentration) around the species name. If the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the phrase <code class="docutils literal notranslate"><span class="pre">mole</span> <span class="pre">fraction</span></code> appears in the parentheses.</p>
 </div>
-</div>
-</div>
-<div class="section" id="n-given-as-a-pandas-dataframe">
+</section>
+</section>
+<section id="n-given-as-a-pandas-dataframe">
 <h3>N given as a Pandas DataFrame<a class="headerlink" href="#n-given-as-a-pandas-dataframe" title="Permalink to this headline">¶</a></h3>
 <p>The descriptive output when the names of the chemical species are given is useful for keeping the output organized. Such organization is also useful when specifying the <em>input</em> for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The function accepts the stroichometric matrix given as a Pandas DataFrame as well. The names of the columns are then assumed to be the names of the chemical species (just the names, not including the brackets and units included in output).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
@@ -412,7 +420,7 @@
 <span class="n">N_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="specification-of-equilibrium-constants">
+<section id="specification-of-equilibrium-constants">
 <h4>Specification of equilibrium constants<a class="headerlink" href="#specification-of-equilibrium-constants" title="Permalink to this headline">¶</a></h4>
 <p>In this data frame, we use Pandas’s default row indexing, but a user may wish to name each reaction for reference. Because of this, EQTK does not assume an ordering of the data frame, so the equilibrium constants <em>must</em> be included in the data frame containing the stoichiometric matrix. They are included in a column entitled <code class="docutils literal notranslate"><span class="pre">'equilibrium</span> <span class="pre">constant'</span></code>. This column must be present, so we will add it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N_df</span><span class="p">[</span><span class="s1">&#39;equilibrium constant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
@@ -453,8 +461,8 @@
 <span class="mi">2</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>   <span class="mf">0.729418</span>   <span class="mf">0.060068</span>   <span class="mf">0.072942</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="free-energies-as-a-dictionary-of-pandas-series">
+</section>
+<section id="free-energies-as-a-dictionary-of-pandas-series">
 <h4>Free energies as a dictionary of Pandas Series<a class="headerlink" href="#free-energies-as-a-dictionary-of-pandas-series" title="Permalink to this headline">¶</a></h4>
 <p>If, however, we wish to input the free energies of the chemical species instead of the equilibrium constants, the <code class="docutils literal notranslate"><span class="pre">'equilibrium</span> <span class="pre">constant'</span></code> column should not be in the inputted data frame. Again, because no order is assumed in the inputted data frame, <code class="docutils literal notranslate"><span class="pre">G</span></code> must be inputted as a Pandas Series with indices given by the names of the chemical species, or as a dictionary with the keys given by the names of the chemical species.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Name sure there is no &#39;equilibrium constant&#39; column in the data frame</span>
@@ -465,9 +473,9 @@
 <span class="n">c</span> <span class="o">=</span> <span class="n">eqtk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">c0</span><span class="o">=</span><span class="n">c0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N_df</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="n">G</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;mM&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="summary-of-i-o-using-stoichiometric-matrices">
+</section>
+</section>
+<section id="summary-of-i-o-using-stoichiometric-matrices">
 <h3>Summary of I/O using stoichiometric matrices<a class="headerlink" href="#summary-of-i-o-using-stoichiometric-matrices" title="Permalink to this headline">¶</a></h3>
 <p>The table below summarizes the allowed input and output types for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> when specifying the problem in terms of the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>. (The table is wide, so may need to scroll to see the whole table.)</p>
 <table class="docutils align-default">
@@ -519,9 +527,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="conservation-matrix-a-given">
+</section>
+</section>
+<section id="conservation-matrix-a-given">
 <h2>Conservation matrix A given<a class="headerlink" href="#conservation-matrix-a-given" title="Permalink to this headline">¶</a></h2>
 <p>Instead of specifying a stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>, we may specify a conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. (<a class="reference external" href="core_concepts.html#conservation-laws">Recall</a> that <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> are related by <span class="math notranslate nohighlight">\(\mathsf{A}^\mathsf{T}\cdot\mathsf{N} = 0\)</span>, and we need only specify <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> <em>or</em> <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>.) If we specify the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>, however, we <em>must</em> specify the free energies <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>; the equilibrium constants are ill-defined absent a stoichiometric matrix. Each column of <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> corresponds to a chemical species. So, entry <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> is the free energy of the chemical species corresponding to column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>.</p>
 <p>Recall also that all entries of the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> <a class="reference external" href="core_concepts.html#specification-in-terms-of-conservation-matrices-and-free-energies">must be nonnegative</a>.</p>
@@ -533,7 +541,7 @@
   1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
   0 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 1
 \end{pmatrix}.\end{split}\]</div>
-<div class="section" id="a-given-as-a-numpy-array">
+<section id="a-given-as-a-numpy-array">
 <h3>A given as a Numpy array<a class="headerlink" href="#a-given-as-a-numpy-array" title="Permalink to this headline">¶</a></h3>
 <p>If we choose to specify the argument <code class="docutils literal notranslate"><span class="pre">A</span></code> for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> as a Numpy array, <code class="docutils literal notranslate"><span class="pre">G</span></code> and <code class="docutils literal notranslate"><span class="pre">c0</span></code> must also be specified as Numpy arrays.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -576,8 +584,8 @@
 <span class="mi">2</span>  <span class="mf">0.188228</span>  <span class="mf">0.077504</span>  <span class="mf">0.009411</span>   <span class="mf">0.729418</span>   <span class="mf">0.060068</span>   <span class="mf">0.072942</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="a-given-as-a-pandas-dataframe">
+</section>
+<section id="a-given-as-a-pandas-dataframe">
 <h3>A given as a Pandas DataFrame<a class="headerlink" href="#a-given-as-a-pandas-dataframe" title="Permalink to this headline">¶</a></h3>
 <p>We can instead specify <code class="docutils literal notranslate"><span class="pre">A</span></code> as a Pandas DataFrame, where each column name is the chemical species name. In this case, <code class="docutils literal notranslate"><span class="pre">G</span></code> must be given either as a Pandas Series with indices corresponding to the column names of <code class="docutils literal notranslate"><span class="pre">A</span></code> or a dictionary with keys corresponding to those of <code class="docutils literal notranslate"><span class="pre">A</span></code>.  <code class="docutils literal notranslate"><span class="pre">c0</span></code> must also be supplied as a dictionary with keys given by the names of the chemical species, a Pandas Series with indices given by the species names, or a Pandas DataFrame with column names given by the species names.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -607,8 +615,8 @@
 <p class="admonition-title">Note</p>
 <p>Unlike in the case with supplying the stoichiometric matrix <code class="docutils literal notranslate"><span class="pre">N</span></code> as a DataFrame, in which the equilibrium constants were given in the <code class="docutils literal notranslate"><span class="pre">N</span></code> DataFrame, no other information is included in the <code class="docutils literal notranslate"><span class="pre">A</span></code> DataFrame. Rather, <code class="docutils literal notranslate"><span class="pre">G</span></code> must be given separately.</p>
 </div>
-</div>
-<div class="section" id="summary-of-i-o-using-conservation-matrices">
+</section>
+<section id="summary-of-i-o-using-conservation-matrices">
 <h3>Summary of I/O using conservation matrices<a class="headerlink" href="#summary-of-i-o-using-conservation-matrices" title="Permalink to this headline">¶</a></h3>
 <p>The table below summarizes the allowed input and output types for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> when specifying the problem in terms of the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>. (The table is wide, so may need to scroll to see the whole table.)</p>
 <table class="docutils align-default">
@@ -642,25 +650,19 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk_fixed_value_solve.html" class="btn btn-neutral float-right" title="Equilibrium with some concentrations fixed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="High-level interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk_fixed_value_solve.html" class="btn btn-neutral float-right" title="Equilibrium with some concentrations fixed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="High-level interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -668,7 +670,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3d1551b90> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fbbf0130> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -681,7 +683,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -689,7 +690,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -708,6 +708,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

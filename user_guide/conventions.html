@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Conventions &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="High-level interfaces" href="high_level/index.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -122,6 +127,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -141,6 +147,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -205,10 +213,10 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="conventions">
+<section id="conventions">
 <span id="id1"></span><h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
 <p>Here, we define the conventions for units and solvent properties for <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, EQTK’s high level interface for solving couple equilibria. We describe the conventions for the low-level interfaces at the bottom of this page.</p>
-<div class="section" id="concentration-units">
+<section id="concentration-units">
 <h2>Concentration units<a class="headerlink" href="#concentration-units" title="Permalink to this headline">¶</a></h2>
 <p>All inputs and outputs describing concentrations (initial concentrations, equilibrium constants, and equilibrium concentrations) are assumed to be in the same units. These units are then specified with the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument. Allowed units are:</p>
 <ul class="simple">
@@ -226,8 +234,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;pM&quot;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;picomolar&quot;</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="energy-units">
+</section>
+<section id="energy-units">
 <h2>Energy units<a class="headerlink" href="#energy-units" title="Permalink to this headline">¶</a></h2>
 <p>The free energies <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> may also carry units, and these must be specified using the <code class="docutils literal notranslate"><span class="pre">G_units</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>. The allowed energy units are:</p>
 <ul class="simple">
@@ -240,34 +248,28 @@
 </ul>
 <p>If <code class="docutils literal notranslate"><span class="pre">G_units</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the inputted free energies are assumed to be in units of the thermal energy, <span class="math notranslate nohighlight">\(kT\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is the Boltzmann constant. If <code class="docutils literal notranslate"><span class="pre">G_units</span></code> are specified, the user should be sure to properly set the value of the <code class="docutils literal notranslate"><span class="pre">T</span></code> keyword argument, which gives the temperature of the solution in Kelvin. The default is <code class="docutils literal notranslate"><span class="pre">T=293.15</span></code>.</p>
 <p>It takes as required input the initial concentrations <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>. The user is also required to specify the stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span> and the equilibrium constants <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, or the conservation matrix <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and the free energies of all chemical species <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>.</p>
-</div>
-<div class="section" id="assumptions-about-the-solvent">
+</section>
+<section id="assumptions-about-the-solvent">
 <h2>Assumptions about the solvent<a class="headerlink" href="#assumptions-about-the-solvent" title="Permalink to this headline">¶</a></h2>
 <p>By default, EQTK assumes the solvent is water at atmospheric pressure and a temperature of 293.15 K. The temperature is adjusted using the <code class="docutils literal notranslate"><span class="pre">T</span></code> keyword argument, which allows specification of the temperature in Kelvin.</p>
 <p>If the solvent is not water at atmospheric pressure, the user must specify the <strong>number density</strong> (<em>not</em> mass density) of the solvent in the same concentration units as specified by the <code class="docutils literal notranslate"><span class="pre">units</span></code> keyword argument. For example, at atmospheric pressure and room temperature, <span class="math notranslate nohighlight">\(\rho_\mathrm{H_2O} \approx 55\)</span> moles per liter.</p>
 <p>Note that if the concentrations are given as mole fractions (<code class="docutils literal notranslate"><span class="pre">units=None</span></code>), then the solvent density is not necessary.</p>
-</div>
-<div class="section" id="conventions-for-low-level-interface">
+</section>
+<section id="conventions-for-low-level-interface">
 <h2>Conventions for low-level interface<a class="headerlink" href="#conventions-for-low-level-interface" title="Permalink to this headline">¶</a></h2>
 <p>The low-level interfaces to the equilibrium solver, <code class="docutils literal notranslate"><span class="pre">eqtk.solveNK()</span></code>, <code class="docutils literal notranslate"><span class="pre">eqtk.solveNG()</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk.solveAG()</span></code>, use only dimensionless concentration and energy units. This means that the concentrations are all mole fractions and equilibrium constants are dimenesionless. All free energies are in units of the thermal energy <span class="math notranslate nohighlight">\(kT\)</span>, where <cite>k</cite> is the Boltzmann constant and <span class="math notranslate nohighlight">\(T\)</span> is the temperature.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="high_level/index.html" class="btn btn-neutral float-right" title="High-level interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="core_concepts.html" class="btn btn-neutral float-left" title="Core concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="high_level/index.html" class="btn btn-neutral float-right" title="High-level interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_concepts.html" class="btn btn-neutral float-left" title="Core concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -275,7 +277,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b8a72050> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fcfa5430> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -288,7 +290,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -296,7 +297,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -315,6 +315,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

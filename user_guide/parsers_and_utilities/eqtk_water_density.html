@@ -1,45 +1,47 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Compute the density of water &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Check satisfaction of equilibrium conditions" href="eqtk_checks.html" />
@@ -80,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,6 +127,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -143,6 +147,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -207,31 +213,25 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="compute-the-density-of-water">
+<section id="compute-the-density-of-water">
 <span id="eqtk-water-density"></span><h1>Compute the density of water<a class="headerlink" href="#compute-the-density-of-water" title="Permalink to this headline">¶</a></h1>
-<p>When converting between mole fraction and concentrations, it is necessary to multiply by the number density of the solvent. Water is often used as a solvent, and the <code class="docutils literal notranslate"><span class="pre">eqtk.water_density()</span></code> function offers calculation of the density of pure water at atmospheric pressure for various temperature using the <a class="reference external" href="https://doi.org/10.1063/1.1461829">IAPWS-95 standards</a>.</p>
+<p>When converting between mole fraction and concentrations, it is necessary to multiply by the number density of the solvent. Water is often used as a solvent, and the <code class="docutils literal notranslate"><span class="pre">eqtk.water_density()</span></code> function offers calculation of the density of pure water at atmospheric pressure for various temperatures using the <a class="reference external" href="https://doi.org/10.1063/1.1461829">IAPWS-95 standards</a>.</p>
 <p>The use specifies the temperature in degrees Kelvin and the units for the density.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">eqtk</span><span class="o">.</span><span class="n">water_density</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">293.15</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
 <span class="go">55.408916789969595</span>
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk_checks.html" class="btn btn-neutral float-right" title="Check satisfaction of equilibrium conditions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk_to_df.html" class="btn btn-neutral float-left" title="Convert output to Pandas DataFrame" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk_checks.html" class="btn btn-neutral float-right" title="Check satisfaction of equilibrium conditions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk_to_df.html" class="btn btn-neutral float-left" title="Convert output to Pandas DataFrame" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -239,7 +239,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3cf5b7910> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fbbe6880> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -252,7 +252,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -260,7 +259,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -279,6 +277,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

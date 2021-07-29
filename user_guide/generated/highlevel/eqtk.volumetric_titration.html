@@ -1,45 +1,47 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>eqtk.volumetric_titration &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
-        <script src="../../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="eqtk.parse_rxns" href="../parsers/eqtk.parse_rxns.html" />
@@ -80,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,6 +129,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,6 +149,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -209,86 +215,97 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="eqtk-volumetric-titration">
+<section id="eqtk-volumetric-titration">
 <h1>eqtk.volumetric_titration<a class="headerlink" href="#eqtk-volumetric-titration" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="eqtk.volumetric_titration">
-<code class="sig-prename descclassname">eqtk.</code><code class="sig-name descname">volumetric_titration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c0</span></em>, <em class="sig-param"><span class="n">c0_titrant</span></em>, <em class="sig-param"><span class="n">vol_titrant</span></em>, <em class="sig-param"><span class="n">N</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">K</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">A</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">G</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">units</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">G_units</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">solvent_density</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">293.15</span></em>, <em class="sig-param"><span class="n">return_log</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">logK</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">normal_A</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">tol_zero</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">max_iters</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">delta_bar</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">0.125</span></em>, <em class="sig-param"><span class="n">min_delta</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_trials</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">perturb_scale</span><span class="o">=</span><span class="default_value">100.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#eqtk.volumetric_titration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Solve for equilibrium concentrations of all species in a dilute
-solution as titrant is added.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>c0</strong> (<em>array_like</em><em> or </em><em>Series</em><em>, </em><em>shape</em><em> (</em><em>n_compounds</em><em>, </em><em>)</em>) – An array containing the total “initial” concentration of all
+<dt class="sig sig-object py" id="eqtk.volumetric_titration">
+<span class="sig-prename descclassname"><span class="pre">eqtk.</span></span><span class="sig-name descname"><span class="pre">volumetric_titration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c0_titrant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vol_titrant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solvent_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">293.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logK</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal_A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.125</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_trials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturb_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eqtk.volumetric_titration" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Solve for equilibrium concentrations of all species in a dilute</dt><dd><p>solution as titrant is added.</p>
+<dl>
+<dt>c0<span class="classifier">array_like or Series, shape (n_compounds, )</span></dt><dd><p>An array containing the total “initial” concentration of all
 possible compounds in solution before any titrant is added. If
 <cite>c0</cite> is inputted as a Pandas Series, the indices contain the
 name of the chemical species and each value is the “initial
 concentration.” If <cite>c0</cite> is passed as a dict, the dict must be
-convertible to a Pandas Series as <cite>pd.Series(c0)</cite>.</p></li>
-<li><p><strong>c0_titrant</strong> (<em>array_like</em><em> or </em><em>Series</em><em>, </em><em>shape</em><em> (</em><em>n_compounds</em><em>, </em><em>)</em>) – An array containing the total “initial” concentration of all
+convertible to a Pandas Series as <cite>pd.Series(c0)</cite>.</p>
+</dd>
+<dt>c0_titrant<span class="classifier">array_like or Series, shape (n_compounds, )</span></dt><dd><p>An array containing the total “initial” concentration of all
 possible compounds in the titrant. The titrant is itself is
 also in equilibrium, but <cite>c0</cite> need not contain that actual
 equilibrium concentrations in the titrant; simply the “initial”
 concentrations of all species in the titrant such that the
 equilibrium may be calculated. If <cite>c0</cite> is inputted as a Pandas
 Series, the indices contain the name of the chemical species and
-each value is the “initial concentration.”</p></li>
-<li><p><strong>vol_titrant</strong> (<em>array_like</em><em>, </em><em>shape</em><em> (</em><em>n_titration_points</em><em>, </em><em>)</em>) – Each entry is the volume of titrant added, as a fraction of the
+each value is the “initial concentration.”</p>
+</dd>
+<dt>vol_titrant<span class="classifier">array_like, shape (n_titration_points, )</span></dt><dd><p>Each entry is the volume of titrant added, as a fraction of the
 initial volume of the solution before addition of solution. Note
 that this is the volume of <em>added titrant</em>, not the total volume
-of the mixed solution.</p></li>
-<li><p><strong>N</strong> (array_like or DataFrame, default <cite>None</cite>) – Stoichiometic matrix. <cite>N[r, j]</cite> = the stoichiometric coefficient
+of the mixed solution.</p>
+</dd>
+<dt>N<span class="classifier">array_like or DataFrame, default <cite>None</cite></span></dt><dd><p>Stoichiometic matrix. <cite>N[r, j]</cite> = the stoichiometric coefficient
 of compound <cite>j</cite> in chemical reaction <cite>r</cite>. All rows of <cite>N</cite> must
 be linearly independent. If entered as a DataFrame, the name of
 chemical species <cite>j</cite> is <cite>N.columns[j]</cite>. Optionally, column
 <cite>‘equilibrium constant’</cite> contains the equilibrium constants for
 each reaction in units commensurate with those of <cite>c0</cite>. If <cite>N</cite>
-is given, <cite>A</cite> and <cite>G</cite> cannot be given.</p></li>
-<li><p><strong>K</strong> (array_like, shape (n_reactions,), default <cite>None</cite>) – <cite>K[r]</cite> is the equilibrium constant for chemical reaction r in
+is given, <cite>A</cite> and <cite>G</cite> cannot be given.</p>
+</dd>
+<dt>K<span class="classifier">array_like, shape (n_reactions,), default <cite>None</cite></span></dt><dd><p><cite>K[r]</cite> is the equilibrium constant for chemical reaction r in
 units commensurate with those of <cite>c0</cite>. If <cite>N</cite> is given as a
 DataFrame with an <cite>‘equilibrium constant’</cite> column, <cite>K</cite> should
-not be supplied. If <cite>K`is given, `A</cite> and <cite>G</cite> cannot be given.</p></li>
-<li><p><strong>logK</strong> (array_like, shape (n_reactions,), default <cite>None</cite>) – <cite>logK[r]</cite> is the natural logarithm of the equilibrium constant
+not be supplied. If <cite>K`is given, `A</cite> and <cite>G</cite> cannot be given.</p>
+</dd>
+<dt>logK<span class="classifier">array_like, shape (n_reactions,), default <cite>None</cite></span></dt><dd><p><cite>logK[r]</cite> is the natural logarithm of the equilibrium constant
 for chemical reaction r. If <cite>logK</cite> is specified, the
 concentrations must all be dimensionless (<cite>units=None</cite>). If <cite>N</cite>
 is given as a DataFrame with a <cite>‘log equilibrium constant’</cite>
 column, <cite>logK</cite> should not be supplied. If <cite>K</cite> is given, <cite>A</cite>,
-<cite>G</cite>, and <cite>K</cite> cannot be given.</p></li>
-<li><p><strong>A</strong> (<em>array_like</em><em> or </em><em>DataFrame</em><em>, </em><em>n_compounds columns</em>) – Conservation matrix. If <cite>c</cite> is the output, then
+<cite>G</cite>, and <cite>K</cite> cannot be given.</p>
+</dd>
+<dt>A<span class="classifier">array_like or DataFrame, n_compounds columns</span></dt><dd><p>Conservation matrix. If <cite>c</cite> is the output, then
 <cite>A &#64; c0 = A &#64; c</cite>. All entries must be nonnegative and the rows
 of <cite>A</cite> must be linearly independent. If entered as a DataFrame,
 the name of chemical species <cite>j</cite> is <cite>A.columns[j]</cite>. If <cite>A</cite> is
-given, <cite>G</cite> must be given, and <cite>N</cite> and <cite>K</cite> cannot be given.</p></li>
-<li><p><strong>G</strong> (array_like, shape (n_compounds, ), default <cite>None</cite>) – <cite>G[j]</cite> is the free energy of chemical species <cite>j</cite> in units
+given, <cite>G</cite> must be given, and <cite>N</cite> and <cite>K</cite> cannot be given.</p>
+</dd>
+<dt>G<span class="classifier">array_like, shape (n_compounds, ), default <cite>None</cite></span></dt><dd><p><cite>G[j]</cite> is the free energy of chemical species <cite>j</cite> in units
 specified by <cite>G_units</cite>. If <cite>G</cite> is given, <cite>A</cite> must be given, and
-<cite>N</cite> and <cite>K</cite> cannot be given.</p></li>
-<li><p><strong>units</strong> (string or <cite>None</cite>, default <cite>None</cite>) – The units of the concentrations inputted as <cite>c0</cite>. The output is
+<cite>N</cite> and <cite>K</cite> cannot be given.</p>
+</dd>
+<dt>units<span class="classifier">string or <cite>None</cite>, default <cite>None</cite></span></dt><dd><p>The units of the concentrations inputted as <cite>c0</cite>. The output is
 also in these units. Allowable values are {<cite>None</cite>,
 ‘mole fraction’, ‘molar’, ‘M’, ‘millimolar’, ‘mM’, ‘micromolar’,
 ‘uM’, ‘µM’, ‘nanomolar’, ‘nM’, ‘picomolar’, ‘pM’}. If <cite>None</cite>,
 concentrations are considered to be dimensionless. The
 equilibrium constants given by <cite>K</cite> must have corresponding
-units.</p></li>
-<li><p><strong>G_units</strong> (string, default <cite>None</cite>) – Units in which free energy is given. If <cite>None</cite> or <cite>‘kT’</cite>, the
+units.</p>
+</dd>
+<dt>G_units<span class="classifier">string, default <cite>None</cite></span></dt><dd><p>Units in which free energy is given. If <cite>None</cite> or <cite>‘kT’</cite>, the
 free  energies are specified in units of of the thermal energy
 kT. Allowable values are {None, ‘kT’, kcal/mol’, ‘J’, ‘J/mol’,
-‘kJ/mol’, ‘pN-nm’}.</p></li>
-<li><p><strong>names</strong> (list or tuple of str, default <cite>None</cite>, optional) – The names of the chemical species. Names are inferred if <cite>N</cite> or
+‘kJ/mol’, ‘pN-nm’}.</p>
+</dd>
+<dt>names<span class="classifier">list or tuple of str, default <cite>None</cite>, optional</span></dt><dd><p>The names of the chemical species. Names are inferred if <cite>N</cite> or
 <cite>A</cite> is given as a DataFrame, in which case <cite>names</cite> is
-unnecessary.</p></li>
-<li><p><strong>solvent_density</strong> (float, default <cite>None</cite>) – The density of the solvent in units commensurate with the
+unnecessary.</p>
+</dd>
+<dt>solvent_density<span class="classifier">float, default <cite>None</cite></span></dt><dd><p>The density of the solvent in units commensurate with the
 <cite>units</cite> keyword argument. Default (<cite>None</cite>) assumes the solvent
 is water, and its density is computed at the temperature
-specified by the <cite>T</cite> keyword argument.</p></li>
-<li><p><strong>T</strong> (<em>float</em><em>, </em><em>default = 293.15</em>) – Temperature, in Kelvin, of the solution. When <cite>N</cite> and <cite>K</cite> are
+specified by the <cite>T</cite> keyword argument.</p>
+</dd>
+<dt>T<span class="classifier">float, default = 293.15</span></dt><dd><p>Temperature, in Kelvin, of the solution. When <cite>N</cite> and <cite>K</cite> are
 given, <cite>T</cite> is ignored if <cite>solvent_density</cite> is given or if
 <cite>units</cite> is <cite>None</cite>. If <cite>A</cite> and <cite>G</cite> are given, <cite>T</cite> is ignored when
-<cite>units</cite> and <cite>G_units</cite> are both <cite>None</cite>.</p></li>
-<li><p><strong>return_log</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, return the natural logarithm of the concentrations.</p></li>
-</ul>
+<cite>units</cite> and <cite>G_units</cite> are both <cite>None</cite>.</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>c</strong> – Equilibrium concentrations of all species. <cite>c[i, j]</cite> is the
+<dt>return_log<span class="classifier">bool, default False</span></dt><dd><p>If True, return the natural logarithm of the concentrations.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>c<span class="classifier">array or DataFrame, shape c0.shape</span></dt><dd><p>Equilibrium concentrations of all species. <cite>c[i, j]</cite> is the
 equilibrium concentration of species <cite>j</cite> for initial
 concentrations given by <cite>c0[i, :]</cite> in units given by <cite>units</cite>. If
 <cite>c0</cite> is inputted as a DataFrame or <cite>names</cite> is not <cite>None</cite>, then
@@ -298,58 +315,70 @@ Otherwise, <cite>c</cite> is returned as a Numpy array with the same shape
 as <cite>c0</cite>. If <cite>return_log</cite> is True, then the return value is the
 natural logarithm of the dimensionless concentrations.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array or DataFrame, shape c0.shape</p>
-</dd>
-<dt class="field-even">Other Parameters</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>normal_A</strong> (<em>bool, default True</em>) – If True, perform a transformation on <cite>A</cite> such that its rows are
+</dl>
+<dl class="simple">
+<dt>normal_A<span class="classifier">bool, default True</span></dt><dd><p>If True, perform a transformation on <cite>A</cite> such that its rows are
 orthonormal. If False, use inputted <cite>A</cite> directly as the
 conservation matrix. This is ignored if <cite>A</cite> is not specified;
 the resulting conservation matrix in that case has orthonormal
-rows by construction.</p></li>
-<li><p><strong>tol</strong> (<em>float, default 1e-7</em>) – Tolerance for convergence. The absolute tolerance for a given
+rows by construction.</p>
+</dd>
+<dt>tol<span class="classifier">float, default 1e-7</span></dt><dd><p>Tolerance for convergence. The absolute tolerance for a given
 initial concentration c0 (a one-dimensional array) for the
 conservation conditions are tol * np.dot(A, c0) except when an
 entry in np.dot(A, c0) is zero. If that is the case for entry i,
 then the absolute tolerance is tol * np.max(A[i] * c0). If all
 entries in A[i] * c0 are zero, which only happens with c0 = 0,
-the absolute tolerance is <cite>tol_zero</cite>.</p></li>
-<li><p><strong>tol_zero</strong> (<em>float, default 1e-12</em>) – Absolute tolerance for convergence when the initial
+the absolute tolerance is <cite>tol_zero</cite>.</p>
+</dd>
+<dt>tol_zero<span class="classifier">float, default 1e-12</span></dt><dd><p>Absolute tolerance for convergence when the initial
 concentrations are all zero. This cannot really be set a priori;
 it depends on the scale of the dimensionless concentrations. By
 default, assume an absolute tolerance consistent with <cite>tol</cite> and
-millimolar mole fractions.</p></li>
-<li><p><strong>max_iters</strong> (<em>int, default 1000</em>) – Maximum number of iterations allowed in trust region method.</p></li>
-<li><p><strong>delta_bar</strong> (<em>float, default 1000.0</em>) – Maximum step size allowed in the trust region method.</p></li>
-<li><p><strong>eta</strong> (<em>float, default 0.125</em>) – Value for eta in the trust region method. <cite>eta</cite> must satisfy
-<cite>0 &lt; eta &lt; 0.25</cite>.</p></li>
-<li><p><strong>min_delta</strong> (<em>float, default 1e-12</em>) – Minimal allowed radius of the trust region. When the trust
-region radius gets below <cite>min_delta</cite>, the trust region
-iterations stop, and a final set of Newton steps is attempted.</p></li>
-<li><p><strong>max_trials</strong> (<em>int, default 100</em>) – In the event that an attempt to solve does not converge, the
-solver tries again with different initial guesses.
-This continues until <cite>max_trials</cite> failures.</p></li>
-<li><p><strong>perturb_scale</strong> (<em>float, default 100.0</em>) – Multiplier on random perturbations to the initial guesses
-as new ones are generated.</p></li>
-</ul>
+millimolar mole fractions.</p>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ValueError</strong> – If input is in any way invalid</p></li>
-<li><p><strong>RuntimeError</strong> – If the trust region algorithm failed to converge</p></li>
-</ul>
+<dt>max_iters<span class="classifier">int, default 1000</span></dt><dd><p>Maximum number of iterations allowed in trust region method.</p>
+</dd>
+<dt>delta_bar<span class="classifier">float, default 1000.0</span></dt><dd><p>Maximum step size allowed in the trust region method.</p>
+</dd>
+<dt>eta<span class="classifier">float, default 0.125</span></dt><dd><p>Value for eta in the trust region method. <cite>eta</cite> must satisfy
+<cite>0 &lt; eta &lt; 0.25</cite>.</p>
+</dd>
+<dt>min_delta<span class="classifier">float, default 1e-12</span></dt><dd><p>Minimal allowed radius of the trust region. When the trust
+region radius gets below <cite>min_delta</cite>, the trust region
+iterations stop, and a final set of Newton steps is attempted.</p>
+</dd>
+<dt>max_trials<span class="classifier">int, default 100</span></dt><dd><p>In the event that an attempt to solve does not converge, the
+solver tries again with different initial guesses.
+This continues until <cite>max_trials</cite> failures.</p>
+</dd>
+<dt>perturb_scale<span class="classifier">float, default 100.0</span></dt><dd><p>Multiplier on random perturbations to the initial guesses
+as new ones are generated.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input is in any way invalid</p>
+</dd>
+<dt>RuntimeError</dt><dd><p>If the trust region algorithm failed to converge</p>
+</dd>
+</dl>
+<p>Uses an elliptical trust region optimization to find the</p>
+</dd>
+</dl>
+<p>equilibrium concentrations. See <a class="footnote-reference brackets" href="#id2" id="id1">1</a> for algorithmic details,
+as well as definitions of the parameters associated with the
+trust region algorithm.</p>
+<blockquote>
+<div><p>In practice, the trust region parameters should not be adjusted</p>
+</div></blockquote>
+<p>from their default values.</p>
+<blockquote>
+<div><dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Nocedal and Wright, Numerical Optimization, Second Edition,
 Springer, 2006, Chapter 4.</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
 <p>Compute the pH titration curve of a 1 M solution of weak acid HA
 with acid dissociation constant 1e-5 M, titrating in 1.0 M NaOH.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rxns</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
@@ -370,25 +399,20 @@ with acid dissociation constant 1e-5 M, titrating in 1.0 M NaOH.</p>
 <span class="go">2                          2  13.522879</span>
 </pre></div>
 </div>
+</div></blockquote>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../parsers/eqtk.parse_rxns.html" class="btn btn-neutral float-right" title="eqtk.parse_rxns" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk.fixed_value_solve.html" class="btn btn-neutral float-left" title="eqtk.fixed_value_solve" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../parsers/eqtk.parse_rxns.html" class="btn btn-neutral float-right" title="eqtk.parse_rxns" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk.fixed_value_solve.html" class="btn btn-neutral float-left" title="eqtk.fixed_value_solve" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -396,7 +420,7 @@ with acid dissociation constant 1e-5 M, titrating in 1.0 M NaOH.</p>
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b8b8ff50> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fc1c2ca0> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -409,7 +433,6 @@ with acid dissociation constant 1e-5 M, titrating in 1.0 M NaOH.</p>
  
 
 </footer>
-
         </div>
       </div>
 
@@ -417,7 +440,6 @@ with acid dissociation constant 1e-5 M, titrating in 1.0 M NaOH.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -436,6 +458,7 @@ with acid dissociation constant 1e-5 M, titrating in 1.0 M NaOH.</p>
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

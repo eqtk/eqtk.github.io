@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Parse reactions given as strings &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Parse input to high-level interface" href="eqtk_parse_input.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,6 +129,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -143,6 +149,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -207,7 +215,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="parse-reactions-given-as-strings">
+<section id="parse-reactions-given-as-strings">
 <span id="eqtk-parse-rxns"></span><h1>Parse reactions given as strings<a class="headerlink" href="#parse-reactions-given-as-strings" title="Permalink to this headline">¶</a></h1>
 <p>An equilibrium problem is specified using a stoichiometric matrix <span class="math notranslate nohighlight">\(\mathsf{N}\)</span>, a set of equilibrium constants <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, and a set of initial concentations of chemical species <span class="math notranslate nohighlight">\(\mathbf{c}^0\)</span>. Directly specifying the stoichiometric matrix may be difficult even for systems of chemical reactions that contain less than 5 species. Indeed, many users first think of the chemical reactions as traditionally written, for example like</p>
 <p>AB ⇌ A + B,</p>
@@ -293,23 +301,17 @@
 </div>
 <p>Note that the equilibrium constants were added to a column <code class="docutils literal notranslate"><span class="pre">&quot;equilibrium</span> <span class="pre">constant&quot;</span></code>. The units of the equilibrium constants are left unspecified in the <code class="docutils literal notranslate"><span class="pre">rxns</span></code> string and in the call to <code class="docutils literal notranslate"><span class="pre">eqtk.parse_rxns()</span></code>, but must be consistent with each other and furthermore consistent with those given by <code class="docutils literal notranslate"><span class="pre">c0</span></code> in a call to <code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code> or other high-level function.</p>
 <p>Alternatively, you can have a column <code class="docutils literal notranslate"><span class="pre">&quot;log</span> <span class="pre">equilibrium</span> <span class="pre">constant&quot;</span></code>, which contains the natural logarithm of the equilibrium constants (which must be dimensionless if the log equilibrium constant is specified).</p>
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk_parse_input.html" class="btn btn-neutral float-right" title="Parse input to high-level interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="Parsers and utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk_parse_input.html" class="btn btn-neutral float-right" title="Parse input to high-level interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Parsers and utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -317,7 +319,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b8b28a10> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fd1e5a00> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -330,7 +332,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -338,7 +339,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -357,6 +357,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

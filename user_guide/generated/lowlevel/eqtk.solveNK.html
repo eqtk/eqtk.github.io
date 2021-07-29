@@ -1,45 +1,47 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>eqtk.solveNK &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
-        <script src="../../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="eqtk.solveNG" href="eqtk.solveNG.html" />
@@ -80,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -126,6 +129,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,6 +149,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -209,11 +215,11 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="eqtk-solvenk">
+<section id="eqtk-solvenk">
 <h1>eqtk.solveNK<a class="headerlink" href="#eqtk-solvenk" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="eqtk.solveNK">
-<code class="sig-prename descclassname">eqtk.</code><code class="sig-name descname">solveNK</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x0</span></em>, <em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">logK</span></em>, <em class="sig-param"><span class="n">tol</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">tol_zero</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_iters</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">delta_bar</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">eta</span><span class="o">=</span><span class="default_value">0.125</span></em>, <em class="sig-param"><span class="n">min_delta</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">max_trials</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">perturb_scale</span><span class="o">=</span><span class="default_value">100.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#eqtk.solveNK" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="eqtk.solveNK">
+<span class="sig-prename descclassname"><span class="pre">eqtk.</span></span><span class="sig-name descname"><span class="pre">solveNK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.125</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_trials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturb_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eqtk.solveNK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve for equilibrium concentrations of all species in a dilute
 solution.</p>
 <dl class="field-list simple">
@@ -225,42 +231,38 @@ of all compounds in solution.</p></li>
 chemical reaction r.</p></li>
 <li><p><strong>logK</strong> (<em>Contiguous Numpy array in C order</em><em>, </em><em>shape</em><em> (</em><em>n_reactions</em><em>,</em><em>)</em>) – logK[r] is the natural logarithm of the dimensionless
 equilibrium constant for reaction <cite>r</cite>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Other Parameters</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>tol</strong> (<em>float, default 1e-7</em>) – Tolerance for convergence. The absolute tolerance for a given
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>default 1e-7</em>) – Tolerance for convergence. The absolute tolerance for a given
 initial concentration c0 (a one-dimensional array) for the
 conservation conditions are tol * np.dot(A, c0) except when an
 entry in np.dot(A, c0) is zero. If that is the case for entry i,
 then the absolute tolerance is tol * np.max(A[i] * c0). If all
 entries in A[i] * c0 are zero, which only happens with c0 = 0,
 the absolute tolerance is <cite>tol_zero</cite>.</p></li>
-<li><p><strong>tol_zero</strong> (<em>float, default 1e-12</em>) – Absolute tolerance for convergence when the initial
+<li><p><strong>tol_zero</strong> (<em>float</em><em>, </em><em>default 1e-12</em>) – Absolute tolerance for convergence when the initial
 concentrations are all zero. This cannot really be set a priori;
 it depends on the scale of the dimensionless concentrations. By
 default, assume an absolute tolerance consistent with <cite>tol</cite> and
 millimolar mole fractions.</p></li>
-<li><p><strong>max_iters</strong> (<em>int, default 1000</em>) – Maximum number of iterations allowed in trust region method.</p></li>
-<li><p><strong>delta_bar</strong> (<em>float, default 1000.0</em>) – Maximum step size allowed in the trust region method.</p></li>
-<li><p><strong>eta</strong> (<em>float, default 0.125</em>) – Value for eta in the trust region method. <cite>eta</cite> must satisfy
+<li><p><strong>max_iters</strong> (<em>int</em><em>, </em><em>default 1000</em>) – Maximum number of iterations allowed in trust region method.</p></li>
+<li><p><strong>delta_bar</strong> (<em>float</em><em>, </em><em>default 1000.0</em>) – Maximum step size allowed in the trust region method.</p></li>
+<li><p><strong>eta</strong> (<em>float</em><em>, </em><em>default 0.125</em>) – Value for eta in the trust region method. <cite>eta</cite> must satisfy
 <cite>0 &lt; eta &lt; 0.25</cite>.</p></li>
-<li><p><strong>min_delta</strong> (<em>float, default 1e-12</em>) – Minimal allowed radius of the trust region. When the trust
+<li><p><strong>min_delta</strong> (<em>float</em><em>, </em><em>default 1e-12</em>) – Minimal allowed radius of the trust region. When the trust
 region radius gets below <cite>min_delta</cite>, the trust region
 iterations stop, and a final set of Newton steps is attempted.</p></li>
-<li><p><strong>max_trials</strong> (<em>int, default 100</em>) – In the event that an attempt to solve does not converge, the
+<li><p><strong>max_trials</strong> (<em>int</em><em>, </em><em>default 100</em>) – In the event that an attempt to solve does not converge, the
 solver tries again with different initial guesses.
 This continues until <cite>max_trials</cite> failures.</p></li>
-<li><p><strong>perturb_scale</strong> (<em>float, default 100.0</em>) – Multiplier on random perturbations to the initial guesses
+<li><p><strong>perturb_scale</strong> (<em>float</em><em>, </em><em>default 100.0</em>) – Multiplier on random perturbations to the initial guesses
 as new ones are generated.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>logx</strong> – <cite>logx[i, j]</cite> = natural log of the dimensionless equilibrium
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>logx</strong> – <cite>logx[i, j]</cite> = natural log of the dimensionless equilibrium
 concentration of compound <cite>j</cite> for calculation <cite>i</cite>.</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Numpy array, shape (n_points, n_compounds)</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Numpy array, shape (n_points, n_compounds)</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -269,23 +271,17 @@ independent.</p>
 <p>All values in <cite>x0</cite> must be non-negative and finite.</p>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk.solveNG.html" class="btn btn-neutral float-right" title="eqtk.solveNG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../parsers/eqtk.eqcheck.html" class="btn btn-neutral float-left" title="eqtk.eqcheck" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk.solveNG.html" class="btn btn-neutral float-right" title="eqtk.solveNG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../parsers/eqtk.eqcheck.html" class="btn btn-neutral float-left" title="eqtk.eqcheck" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -293,7 +289,7 @@ independent.</p>
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3b8c92210> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa9164e6d60> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -306,7 +302,6 @@ independent.</p>
  
 
 </footer>
-
         </div>
       </div>
 
@@ -314,7 +309,6 @@ independent.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -333,6 +327,7 @@ independent.</p>
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

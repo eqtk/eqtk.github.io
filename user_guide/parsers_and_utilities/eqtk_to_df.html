@@ -1,45 +1,49 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Convert output to Pandas DataFrame &mdash; EQTK 0.1.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/togglebutton.js"></script>
-        <script >var togglebuttonSelector = '.toggle';</script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Compute the density of water" href="eqtk_water_density.html" />
@@ -80,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -124,6 +129,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -143,6 +149,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -207,7 +215,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="convert-output-to-pandas-dataframe">
+<section id="convert-output-to-pandas-dataframe">
 <span id="eqtk-to-df"></span><h1>Convert output to Pandas DataFrame<a class="headerlink" href="#convert-output-to-pandas-dataframe" title="Permalink to this headline">¶</a></h1>
 <p>Low level interface functions return equilibrium concentrations as Numpy arrays. The high level interface functions (<code class="docutils literal notranslate"><span class="pre">eqtk.solve()</span></code>, <code class="docutils literal notranslate"><span class="pre">eqtk.fixed_value_solve()</span></code>, and <code class="docutils literal notranslate"><span class="pre">eqtk.volumetric_titration()</span></code>) can also return Numpy arrays if the input is also Numpy arrays and the <code class="docutils literal notranslate"><span class="pre">names</span></code> keyword argument is unspecified. After performing a calculation that returns Numpy arrays, the user may with to convert the output to a Pandas Series of DataFrame for convenience in plotting or for further processing. The <code class="docutils literal notranslate"><span class="pre">eqtk.to_df()</span></code> function provides this functionality.</p>
 <p>Before demonstrating how to use the function, it is important to note that the preferred way to generate rich output is to generate it directly from the high level interfaces by supplying arguments that enable return of DataFrames. The <code class="docutils literal notranslate"><span class="pre">eqtk.to_df()</span></code> function is only meant as a post processing step if the user either neglected to provide descriptive input to the high level interface function or chose to use the low level interface for speed purposes.</p>
@@ -289,23 +297,17 @@
 <span class="mi">2</span>  <span class="mf">0.039494</span>  <span class="mf">0.026946</span>  <span class="mf">0.001975</span>  <span class="mf">0.053211</span>  <span class="mf">0.007261</span>  <span class="mf">0.005321</span>
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eqtk_water_density.html" class="btn btn-neutral float-right" title="Compute the density of water" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eqtk_parse_input.html" class="btn btn-neutral float-left" title="Parse input to high-level interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eqtk_water_density.html" class="btn btn-neutral float-right" title="Compute the density of water" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqtk_parse_input.html" class="btn btn-neutral float-left" title="Parse input to high-level interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -313,7 +315,7 @@
     <p>
 
     </p>
-  </div> <jinja2.runtime.BlockReference object at 0x7fc3d1e97050> 
+  </div> <jinja2.runtime.BlockReference object at 0x7fa8fd20d1f0> 
 
 <p>© 2020 EQTK Developers.</p>
 
@@ -326,7 +328,6 @@
  
 
 </footer>
-
         </div>
       </div>
 
@@ -334,7 +335,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -353,6 +353,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-166791717-1', 'auto');
+    
     ga('send', 'pageview');
     </script>
 
